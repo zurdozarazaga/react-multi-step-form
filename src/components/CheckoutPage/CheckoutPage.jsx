@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Stepper,
   Step,
   StepLabel,
   Button,
   Typography,
-  CircularProgress
-} from '@material-ui/core';
-import { Formik, Form } from 'formik';
+  CircularProgress,
+} from "@mui/material";
 
-import AddressForm from './Forms/AddressForm';
-import PaymentForm from './Forms/PaymentForm';
-import ReviewOrder from './ReviewOrder';
-import CheckoutSuccess from './CheckoutSuccess';
+import AddressForm from "./Forms/AddressForm";
+import PaymentForm from "./Forms/PaymentForm";
+import ReviewOrder from "./ReviewOrder";
+import CheckoutSuccess from "./CheckoutSuccess";
 
-import validationSchema from './FormModel/validationSchema';
-import checkoutFormModel from './FormModel/checkoutFormModel';
-import formInitialValues from './FormModel/formInitialValues';
+import validationSchema from "./FormModel/validationSchema";
+import checkoutFormModel from "./FormModel/checkoutFormModel";
+import formInitialValues from "./FormModel/formInitialValues";
 
-import useStyles from './styles';
-
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ["Shipping address", "Payment details", "Review your order"];
 const { formId, formField } = checkoutFormModel;
 
 function _renderStepContent(step) {
@@ -37,13 +34,12 @@ function _renderStepContent(step) {
 }
 
 export default function CheckoutPage() {
-  const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
   function _sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   async function _submitForm(values, actions) {
@@ -73,8 +69,8 @@ export default function CheckoutPage() {
       <Typography component="h1" variant="h4" align="center">
         Checkout
       </Typography>
-      <Stepper activeStep={activeStep} className={classes.stepper}>
-        {steps.map(label => (
+      <Stepper activeStep={activeStep}>
+        {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
@@ -84,42 +80,39 @@ export default function CheckoutPage() {
         {activeStep === steps.length ? (
           <CheckoutSuccess />
         ) : (
-          <Formik
-            initialValues={formInitialValues}
-            validationSchema={currentValidationSchema}
-            onSubmit={_handleSubmit}
-          >
+          <React.Fragment>
             {({ isSubmitting }) => (
-              <Form id={formId}>
+              <form>
                 {_renderStepContent(activeStep)}
 
-                <div className={classes.buttons}>
+                <Box Display="flex" justifyContent="flex-end">
                   {activeStep !== 0 && (
-                    <Button onClick={_handleBack} className={classes.button}>
+                    <Button onClick={_handleBack} mt={3} mb={1}>
                       Back
                     </Button>
                   )}
-                  <div className={classes.wrapper}>
+                  <Box m={1} position="relative">
                     <Button
                       disabled={isSubmitting}
                       type="submit"
                       variant="contained"
                       color="primary"
-                      className={classes.button}
+                      mt={3} mb={1}
                     >
-                      {isLastStep ? 'Place order' : 'Next'}
+                      {isLastStep ? "Place order" : "Next"}
                     </Button>
                     {isSubmitting && (
                       <CircularProgress
                         size={24}
-                        className={classes.buttonProgress}
+                        position="absolute"
+                        sx={{ top: "50%", left: "50%" }}
                       />
                     )}
-                  </div>
-                </div>
-              </Form>
+                  </Box>
+                </Box>
+              </form>
             )}
-          </Formik>
+          </React.Fragment>
         )}
       </React.Fragment>
     </React.Fragment>

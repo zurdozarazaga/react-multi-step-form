@@ -11,29 +11,29 @@ export default {
       label: 'Last name*',
       requiredErrorMsg: 'Last name is required'
     },
-    address1: {
-      name: 'address1',
-      label: 'Address Line 1*',
-      requiredErrorMsg: 'Address Line 1 is required'
+    email: {
+      name: 'email',
+      label: 'email*',
+      requiredErrorMsg: 'Email is required'
     },
-    address2: {
-      name: 'address2',
-      label: 'Address Line 2'
+    profession: {
+      name: 'profession',
+      label: '¿En qué empresa trabajás?*',
+      requiredErrorMsg: 'business is required',
     },
-    city: {
-      name: 'city',
-      label: 'City*',
-      requiredErrorMsg: 'City is required'
+    area: {
+      name: 'area',
+      label: '¿En qué área de la empresa trabajás?*',
+      requiredErrorMsg: 'Area is required'
     },
-    state: {
-      name: 'state',
+    phone: {
+      name: 'phone',
       label: 'State/Province/Region'
     },
-    zipcode: {
-      name: 'zipcode',
-      label: 'Zipcode*',
-      requiredErrorMsg: 'Zipcode is required',
-      invalidErrorMsg: 'Zipcode is not valid (e.g. 70000)'
+    job: {
+      name: 'job',
+      label: '¿Cuál es tu puesto en la empresa?*',
+      requiredErrorMsg: 'job is required',
     },
     country: {
       name: 'country',

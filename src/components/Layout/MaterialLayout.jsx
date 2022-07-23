@@ -1,24 +1,34 @@
 import React from 'react';
-import { Paper, CssBaseline } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/core/styles';
 
+import {Box, Paper} from "@mui/material";
 import Header from '../Header';
 import Footer from '../Footer';
 
-import { theme, useStyle } from './styles';
+
 
 export default function MaterialLayout(props) {
   const { children } = props;
-  const classes = useStyle();
+  
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <CssBaseline />
       <Header />
-      <div className={classes.root}>
-        <Paper className={classes.paper}>{children}</Paper>
-      </div>
+      <Box 
+        mr={2}
+        ml={2}
+        sx={{
+          width: 'auto',
+        }}
+      >
+        <Paper
+          mt={2}
+          mb={2}
+          sx={{
+            
+          }}
+        >{children}</Paper>
+      </Box>
       <Footer />
-    </ThemeProvider>
-  );
+    </>
 }

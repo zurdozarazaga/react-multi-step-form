@@ -5,6 +5,16 @@
 /.pnp
 .pnp.js
 
+#folders
+/images
+
+#images
+.jpg
+.jpeg
+.png
+.gif
+.svg
+
 # testing
 /coverage
 
@@ -12,6 +22,7 @@
 /build
 
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local
