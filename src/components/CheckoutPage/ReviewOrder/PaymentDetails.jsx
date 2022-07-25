@@ -1,12 +1,12 @@
 import React from 'react';
-import moment from 'moment';
-import { Typography, Grid } from '@material-ui/core';
-import useStyles from './styles';
+// import moment from 'moment';
+import { Typography, Grid } from "@mui/material";
+// import useStyles from './styles';
 
 function PaymentDetails(props) {
   const { formValues } = props;
-  const classes = useStyles();
-  const { nameOnCard, cardNumber, expiryDate } = formValues;
+  // const classes = useStyles();
+  // const { nameOnCard, cardNumber, expiryDate } = formValues;
   return (
     <Grid item container direction="column" xs={12} sm={6}>
       <Typography variant="h6" gutterBottom className={classes.title}>
@@ -43,7 +43,7 @@ function PaymentDetails(props) {
           </Grid>
           <Grid item xs={6}>
             <Typography gutterBottom>
-              {moment(expiryDate).format('MM/YY')}
+              {/* {moment(expiryDate).format('MM/YY')} */}
             </Typography>
           </Grid>
         </React.Fragment>

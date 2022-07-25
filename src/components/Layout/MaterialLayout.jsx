@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Box, Paper} from "@mui/material";
+import {Box, CssBaseline, Paper} from "@mui/material";
 import Header from '../Header';
 import Footer from '../Footer';
 
@@ -8,7 +8,6 @@ import Footer from '../Footer';
 
 export default function MaterialLayout(props) {
   const { children } = props;
-  
 
   return (
     <>
@@ -31,4 +30,5 @@ export default function MaterialLayout(props) {
       </Box>
       <Footer />
     </>
+  );
 }

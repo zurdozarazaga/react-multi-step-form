@@ -1,46 +1,34 @@
-import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import { InputField, DatePickerField } from '../../FormFields';
+import React from "react";
+import { Grid, Typography } from "@mui/material";
+// import { InputField, DatePickerField } from "../../FormFields";
 
 export default function PaymentForm(props) {
+  const labels = [
+    "Se planifica mensualmente las ventas.",
+    "Se planifica anualmente las ventas.",
+    "Se planifica anualmente los ingresos y los egresos.",
+    "Se elabora un presupuesto económico y financiero.",
+    "Se elabora un plan estratégico de mediano/largo plazo y un presupuesto económico financiero.",
+  ];
   const {
-    formField: { nameOnCard, cardNumber, expiryDate, cvv }
+    formField: { nameOnCard, cardNumber, expiryDate, cvv },
   } = props;
 
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Payment method
+        Pensando en la Planificación...
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <InputField
-            name={nameOnCard.name}
-            label={nameOnCard.label}
-            fullWidth
+      {labels.map((label, index) => (
+        <Grid item xs={12}>
+          <CheckboxField
+            name={label[index]}
+            label={label[index]}
           />
         </Grid>
-        <Grid item xs={12} md={6}>
-          <InputField
-            name={cardNumber.name}
-            label={cardNumber.label}
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <DatePickerField
-            name={expiryDate.name}
-            label={expiryDate.label}
-            format="MM/yy"
-            views={['year', 'month']}
-            minDate={new Date()}
-            maxDate={new Date('2050/12/31')}
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <InputField name={cvv.name} label={cvv.label} fullWidth />
-        </Grid>
+
+      ))}
       </Grid>
     </React.Fragment>
   );

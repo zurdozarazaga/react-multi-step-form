@@ -10,12 +10,13 @@ import {
 
 import AddressForm from "./Forms/AddressForm";
 import PaymentForm from "./Forms/PaymentForm";
-import ReviewOrder from "./ReviewOrder";
-import CheckoutSuccess from "./CheckoutSuccess";
+// import ReviewOrder from "./ReviewOrder";
+// import CheckoutSuccess from "./CheckoutSuccess";
 
-import validationSchema from "./FormModel/validationSchema";
+// import validationSchema from "./FormModel/validationSchema";
 import checkoutFormModel from "./FormModel/checkoutFormModel";
-import formInitialValues from "./FormModel/formInitialValues";
+import { Box } from "@mui/system";
+// import formInitialValues from "./FormModel/formInitialValues";
 
 const steps = ["Shipping address", "Payment details", "Review your order"];
 const { formId, formField } = checkoutFormModel;
@@ -26,8 +27,8 @@ function _renderStepContent(step) {
       return <AddressForm formField={formField} />;
     case 1:
       return <PaymentForm formField={formField} />;
-    case 2:
-      return <ReviewOrder />;
+    // case 2:
+    //   return <ReviewOrder />;
     default:
       return <div>Not Found</div>;
   }
@@ -35,7 +36,7 @@ function _renderStepContent(step) {
 
 export default function CheckoutPage() {
   const [activeStep, setActiveStep] = useState(0);
-  const currentValidationSchema = validationSchema[activeStep];
+  // const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
   function _sleep(ms) {
@@ -78,7 +79,7 @@ export default function CheckoutPage() {
       </Stepper>
       <React.Fragment>
         {activeStep === steps.length ? (
-          <CheckoutSuccess />
+          {/* <CheckoutSuccess /> */}
         ) : (
           <React.Fragment>
             {({ isSubmitting }) => (
