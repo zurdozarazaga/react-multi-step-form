@@ -79,10 +79,10 @@ export default function CheckoutPage() {
       </Stepper>
       <React.Fragment>
         {activeStep === steps.length ? (
-          {/* <CheckoutSuccess /> */}
+         {/* <CheckoutSuccess /> */}
         ) : (
           <React.Fragment>
-            {({ isSubmitting }) => (
+            {/* {({ isSubmitting }) => ( */}
               <form>
                 {_renderStepContent(activeStep)}
 
@@ -94,7 +94,7 @@ export default function CheckoutPage() {
                   )}
                   <Box m={1} position="relative">
                     <Button
-                      disabled={isSubmitting}
+                      disabled={false}
                       type="submit"
                       variant="contained"
                       color="primary"
@@ -102,17 +102,17 @@ export default function CheckoutPage() {
                     >
                       {isLastStep ? "Place order" : "Next"}
                     </Button>
-                    {isSubmitting && (
+                    {/* {isSubmitting && (
                       <CircularProgress
                         size={24}
                         position="absolute"
                         sx={{ top: "50%", left: "50%" }}
                       />
-                    )}
+                    )} */}
                   </Box>
                 </Box>
               </form>
-            )}
+            )
           </React.Fragment>
         )}
       </React.Fragment>
