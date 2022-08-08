@@ -5,8 +5,8 @@ import {
   StepLabel,
   Button,
   Typography,
-  CircularProgress
-} from '@material-ui/core';
+  CircularProgress,
+} from '@mui/material';
 import { Formik, Form } from 'formik';
 
 import AddressForm from './Forms/AddressForm';
@@ -18,7 +18,7 @@ import validationSchema from './FormModel/validationSchema';
 import checkoutFormModel from './FormModel/checkoutFormModel';
 import formInitialValues from './FormModel/formInitialValues';
 
-import useStyles from './styles';
+// import useStyles from './styles';
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 const { formId, formField } = checkoutFormModel;
@@ -28,22 +28,22 @@ function _renderStepContent(step) {
     case 0:
       return <AddressForm formField={formField} />;
     case 1:
-      return <PaymentForm formField={formField} />;
+      return <div>soy el segundo</div>;
     case 2:
-      return <ReviewOrder />;
+      return <div>soy el tercero</div>;
     default:
       return <div>Not Found</div>;
   }
 }
 
 export default function CheckoutPage() {
-  const classes = useStyles();
+  // const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
   function _sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   async function _submitForm(values, actions) {
@@ -55,6 +55,7 @@ export default function CheckoutPage() {
   }
 
   function _handleSubmit(values, actions) {
+    console.log('values', values);
     if (isLastStep) {
       _submitForm(values, actions);
     } else {
@@ -73,8 +74,8 @@ export default function CheckoutPage() {
       <Typography component="h1" variant="h4" align="center">
         Checkout
       </Typography>
-      <Stepper activeStep={activeStep} className={classes.stepper}>
-        {steps.map(label => (
+      <Stepper activeStep={activeStep} className="">
+        {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
@@ -93,28 +94,22 @@ export default function CheckoutPage() {
               <Form id={formId}>
                 {_renderStepContent(activeStep)}
 
-                <div className={classes.buttons}>
+                <div className="h6">
                   {activeStep !== 0 && (
-                    <Button onClick={_handleBack} className={classes.button}>
+                    <Button onClick={_handleBack} className="">
                       Back
                     </Button>
                   )}
-                  <div className={classes.wrapper}>
+                  <div className="">
                     <Button
                       disabled={isSubmitting}
                       type="submit"
                       variant="contained"
                       color="primary"
-                      className={classes.button}
                     >
                       {isLastStep ? 'Place order' : 'Next'}
                     </Button>
-                    {isSubmitting && (
-                      <CircularProgress
-                        size={24}
-                        className={classes.buttonProgress}
-                      />
-                    )}
+                    {isSubmitting && <CircularProgress size={24} />}
                   </div>
                 </div>
               </Form>

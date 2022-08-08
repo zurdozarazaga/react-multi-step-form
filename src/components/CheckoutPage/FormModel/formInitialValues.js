@@ -3,28 +3,24 @@ const {
   formField: {
     firstName,
     lastName,
-    address1,
-    city,
-    zipcode,
-    country,
-    useAddressForPaymentDetails,
+    email,
+    phone,
+    area,
+    profession,
+    job,
     nameOnCard,
     cardNumber,
     expiryDate,
-    cvv
-  }
+    cvv,
+  },
 } = checkoutFormModel;
 
 export default {
   [firstName.name]: '',
   [lastName.name]: '',
-  [address1.name]: '',
-  [city.name]: '',
-  [zipcode.name]: '',
-  [country.name]: '',
-  [useAddressForPaymentDetails.name]: false,
-  [nameOnCard.name]: '',
-  [cardNumber.name]: '',
-  [expiryDate.name]: '',
-  [cvv.name]: ''
+  [email.name]: '',
+  [profession.name]: '',
+  [area.name]: '',
+  [phone.name]: '',
+  [job.name]: '',
 };
