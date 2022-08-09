@@ -61,15 +61,7 @@ const countries = [
 
 export default function AddressForm(props) {
   const {
-    formField: {
-      firstName,
-      lastName,
-      email,
-      phone,
-      area,
-      profession,
-      job,
-    },
+    formField: { firstName, lastName, email, phone, area, profession, job },
   } = props;
   return (
     <React.Fragment>
