@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Stepper,
   Step,
@@ -6,38 +6,61 @@ import {
   Button,
   Typography,
   CircularProgress,
-} from '@mui/material';
-import { Formik, Form } from 'formik';
+  Box,
+} from "@mui/material";
+import { Formik, Form } from "formik";
 
-import AddressForm from './Forms/AddressForm';
-import PaymentForm from './Forms/PaymentForm';
-import ReviewOrder from './ReviewOrder';
-import CheckoutSuccess from './CheckoutSuccess';
+import AddressForm from "./Forms/AddressForm";
+import CheckoutSuccess from "./CheckoutSuccess";
 
-import validationSchema from './FormModel/validationSchema';
-import checkoutFormModel from './FormModel/checkoutFormModel';
-import formInitialValues from './FormModel/formInitialValues';
+import validationSchema from "./FormModel/validationSchema";
+import checkoutFormModel from "./FormModel/checkoutFormModel";
+import formInitialValues from "./FormModel/formInitialValues";
+import CheckboxPersonalDate from "./Forms/CheckboxPersonalDate";
+import checkboxData from "./FormModel/checkboxData";
+import CheckboxPlanning from "./Forms/CheckboxPlanning";
 
 // import useStyles from './styles';
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = [
+  "Datos Personales",
+  "Planificación",
+  "Equipo",
+  "Procesos",
+  "Informacíon",
+  "Financiamiento",
+  "Familia",
+  "Finalizar",
+];
 const { formId, formField } = checkoutFormModel;
-
+const { checkboxField } = checkboxData;
+console.log("firstCheckbox", checkboxField);
 function _renderStepContent(step) {
   switch (step) {
     case 0:
       return <AddressForm formField={formField} />;
     case 1:
-      return <div>soy el segundo</div>;
+      return <CheckboxPersonalDate checkboxData={checkboxField} />;
     case 2:
-      return <div>soy el tercero</div>;
+      return <CheckboxPlanning checkboxData={checkboxField} />;
+    // case 3:
+    //   return <CheckboxForm checkboxData={checkboxField} position={3} />;
+    // case 4:
+    //   return <CheckboxForm checkboxData={checkboxField} position={4} />;
+    // case 5:
+    //   return <CheckboxForm checkboxData={checkboxField} position={5} />;
+    // case 6:
+    //   return <CheckboxForm checkboxData={checkboxField} position={6} />;
+    // case 7:
+    //   return <CheckboxForm checkboxData={checkboxField} position={7} />;
+    // case 8:
+    //   return <CheckboxForm checkboxData={checkboxField} position={8} />;
     default:
       return <div>Not Found</div>;
   }
 }
 
 export default function CheckoutPage() {
-  // const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
@@ -55,7 +78,7 @@ export default function CheckoutPage() {
   }
 
   function _handleSubmit(values, actions) {
-    console.log('values', values);
+    console.log("values", values);
     if (isLastStep) {
       _submitForm(values, actions);
     } else {
@@ -94,24 +117,38 @@ export default function CheckoutPage() {
               <Form id={formId}>
                 {_renderStepContent(activeStep)}
 
-                <div className="h6">
+                <Box
+                  sx={{
+                    display: "flex",
+                    px: "2rem",
+                    py: "1rem",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
                   {activeStep !== 0 && (
                     <Button onClick={_handleBack} className="">
                       Back
                     </Button>
                   )}
-                  <div className="">
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                    }}
+                  >
                     <Button
                       disabled={isSubmitting}
                       type="submit"
                       variant="contained"
                       color="primary"
                     >
-                      {isLastStep ? 'Place order' : 'Next'}
+                      {isLastStep ? "Finalizar" : "Next"}
                     </Button>
                     {isSubmitting && <CircularProgress size={24} />}
-                  </div>
-                </div>
+                  </Box>
+                </Box>
               </Form>
             )}
           </Formik>

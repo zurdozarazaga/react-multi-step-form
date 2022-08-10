@@ -8,16 +8,16 @@
   ],
   "rules": {
     "prettier/prettier": [
-      "error",
+      "warn",
       {
-        "singleQuote": true
+        "singleQuote": false
       }
     ],
-    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": "warn",
     "quotes": [
       2,
-      "single",
+      "double",
       {
         "avoidEscape": true
       }
