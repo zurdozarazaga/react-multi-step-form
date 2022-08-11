@@ -3,46 +3,46 @@ import { Box } from "@mui/system";
 import React from "react";
 import { CheckboxField } from "../../FormFields";
 
-const CheckboxPersonalDate = ({ checkboxData }) => {
+const CheckboxFinancing = ({ checkboxData }) => {
   // console.log("props", checkboxPersonalData);
-  const { firstCheckbox } = checkboxData;
+  const { fifthCheckbox } = checkboxData;
 
   return (
     <Paper
       sx={{
-        width: "40%",
+        width: "45%",
         justifyContent: "center",
         height: "auto",
         padding: "12px",
       }}
     >
       <Typography variant="h6" gutterBottom>
-        {`${firstCheckbox.position}. ${firstCheckbox.text}`}
+        {`${fifthCheckbox.position}. ${fifthCheckbox.text}`}
       </Typography>
       <Box spacing={2} sx={{ display: "block" }}>
         <CheckboxField
-          name={firstCheckbox.name1}
-          label={firstCheckbox.labelCheckbox1}
+          name={fifthCheckbox.name1}
+          label={fifthCheckbox.labelCheckbox1}
         />
         <CheckboxField
-          name={firstCheckbox.name2}
-          label={firstCheckbox.labelCheckbox2}
+          name={fifthCheckbox.name2}
+          label={fifthCheckbox.labelCheckbox2}
         />
         <CheckboxField
-          name={firstCheckbox.name3}
-          label={firstCheckbox.labelCheckbox3}
+          name={fifthCheckbox.name3}
+          label={fifthCheckbox.labelCheckbox3}
         />
         <CheckboxField
-          name={firstCheckbox.name4}
-          label={firstCheckbox.labelCheckbox4}
+          name={fifthCheckbox.name4}
+          label={fifthCheckbox.labelCheckbox4}
         />
         <CheckboxField
-          name={firstCheckbox.name5}
-          label={firstCheckbox.labelCheckbox5}
+          name={fifthCheckbox.name5}
+          label={fifthCheckbox.labelCheckbox5}
         />
       </Box>
     </Paper>
   );
 };
 
-export default CheckboxPersonalDate;
+export default CheckboxFinancing;

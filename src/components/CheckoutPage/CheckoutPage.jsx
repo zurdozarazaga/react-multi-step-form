@@ -20,6 +20,10 @@ import CheckboxPersonalDate from "./Forms/CheckboxPersonalDate";
 import checkboxData from "./FormModel/checkboxData";
 import CheckboxPlanning from "./Forms/CheckboxPlanning";
 import CheckboxProcess from "./Forms/CheckboxProcess";
+import CheckboxInformation from "./Forms/CheckboxInformation";
+import CheckboxFinancing from "./Forms/CheckboxFinancing";
+import CheckboxFamily from "./Forms/CheckboxFamily";
+import FinishForm from "./Forms/FinishForm";
 
 // import useStyles from './styles';
 
@@ -46,16 +50,14 @@ function _renderStepContent(step) {
       return <CheckboxPlanning checkboxData={checkboxField} />;
     case 3:
       return <CheckboxProcess checkboxData={checkboxField} />;
-    // case 4:
-    //   return <CheckboxForm checkboxData={checkboxField} position={4} />;
-    // case 5:
-    //   return <CheckboxForm checkboxData={checkboxField} position={5} />;
-    // case 6:
-    //   return <CheckboxForm checkboxData={checkboxField} position={6} />;
-    // case 7:
-    //   return <CheckboxForm checkboxData={checkboxField} position={7} />;
-    // case 8:
-    //   return <CheckboxForm checkboxData={checkboxField} position={8} />;
+    case 4:
+      return <CheckboxInformation checkboxData={checkboxField} />;
+    case 5:
+      return <CheckboxFinancing checkboxData={checkboxField} />;
+    case 6:
+      return <CheckboxFamily checkboxData={checkboxField}  />;
+    case 7:
+      return <FinishForm />;
     default:
       return <div>Not Found</div>;
   }
@@ -158,7 +160,7 @@ export default function CheckoutPage() {
                         variant="contained"
                         color="primary"
                       >
-                        {isLastStep ? "Finalizar" : "Next"}
+                        {isLastStep ? "Enviar" : "Next"}
                       </Button>
                       {isSubmitting && <CircularProgress size={24} />}
                     </Box>
