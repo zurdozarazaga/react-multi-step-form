@@ -8,11 +8,18 @@ const CheckboxPlanning = ({ checkboxData }) => {
   const { secondCheckbox } = checkboxData;
 
   return (
-    <Paper>
+    <Paper
+      sx={{
+        width: "45%",
+        justifyContent: "center",
+        height: "auto",
+        padding: "12px",
+      }}
+    >
       <Typography variant="h6" gutterBottom>
         {`${secondCheckbox.position}. ${secondCheckbox.text}`}
       </Typography>
-      <Box sx={{}}>
+      <Box sx={{ display: "block" }}>
         <CheckboxField
           name={secondCheckbox.name1}
           label={secondCheckbox.labelCheckbox1}

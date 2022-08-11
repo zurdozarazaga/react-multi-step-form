@@ -94,8 +94,8 @@ export default function CheckoutPage() {
 
   return (
     <React.Fragment>
-      <Typography component="h1" variant="h4" align="center">
-        Checkout
+      <Typography m={2} component="h1" variant="h4" align="center">
+        Diagnóstico
       </Typography>
       <Stepper activeStep={activeStep} className="">
         {steps.map((label) => (
@@ -115,38 +115,52 @@ export default function CheckoutPage() {
           >
             {({ isSubmitting }) => (
               <Form id={formId}>
-                {_renderStepContent(activeStep)}
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    px: "2rem",
-                    py: "1rem",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  {activeStep !== 0 && (
-                    <Button onClick={_handleBack} className="">
-                      Back
-                    </Button>
-                  )}
+                <Box sx={{ height: "100vh" }}>
                   <Box
                     sx={{
                       display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "flex-end",
+                      justifyContent: "center",
+                      height: "auto",
+                      mt: "20px",
+                      mb: "5px",
                     }}
                   >
-                    <Button
-                      disabled={isSubmitting}
-                      type="submit"
-                      variant="contained"
-                      color="primary"
+                    {_renderStepContent(activeStep)}
+                  </Box>
+
+                  <Box
+                    sx={{
+                      display: "flex",
+                      px: "2rem",
+                      py: "1rem",
+                      mb: "1rem",
+                      mt: "12px",
+                      flexDirection: "row",
+                      justifyContent: "space-around",
+                    }}
+                  >
+                    {activeStep !== 0 && (
+                      <Button onClick={_handleBack} className="">
+                        Back
+                      </Button>
+                    )}
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "flex-end",
+                      }}
                     >
-                      {isLastStep ? "Finalizar" : "Next"}
-                    </Button>
-                    {isSubmitting && <CircularProgress size={24} />}
+                      <Button
+                        disabled={isSubmitting}
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                      >
+                        {isLastStep ? "Finalizar" : "Next"}
+                      </Button>
+                      {isSubmitting && <CircularProgress size={24} />}
+                    </Box>
                   </Box>
                 </Box>
               </Form>

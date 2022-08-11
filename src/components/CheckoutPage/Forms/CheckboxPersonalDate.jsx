@@ -8,11 +8,18 @@ const CheckboxPersonalDate = ({ checkboxData }) => {
   const { firstCheckbox } = checkboxData;
 
   return (
-    <Paper>
+    <Paper
+      sx={{
+        width: "45%",
+        justifyContent: "center",
+        height: "auto",
+        padding: "12px",
+      }}
+    >
       <Typography variant="h6" gutterBottom>
         {`${firstCheckbox.position}. ${firstCheckbox.text}`}
       </Typography>
-      <Box sx={{}}>
+      <Box spacing={2} sx={{ display: "block" }}>
         <CheckboxField
           name={firstCheckbox.name1}
           label={firstCheckbox.labelCheckbox1}

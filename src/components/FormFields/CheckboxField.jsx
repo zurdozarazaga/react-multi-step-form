@@ -25,7 +25,7 @@ export default function CheckboxField(props) {
   }
 
   return (
-    <FormControl {...rest}>
+    <FormControl {...rest} sx={{ mb: "5px" }}>
       <FormControlLabel
         value={field.checked}
         checked={field.checked}
