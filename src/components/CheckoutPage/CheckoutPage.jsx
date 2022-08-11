@@ -19,6 +19,7 @@ import formInitialValues from "./FormModel/formInitialValues";
 import CheckboxPersonalDate from "./Forms/CheckboxPersonalDate";
 import checkboxData from "./FormModel/checkboxData";
 import CheckboxPlanning from "./Forms/CheckboxPlanning";
+import CheckboxProcess from "./Forms/CheckboxProcess";
 
 // import useStyles from './styles';
 
@@ -43,8 +44,8 @@ function _renderStepContent(step) {
       return <CheckboxPersonalDate checkboxData={checkboxField} />;
     case 2:
       return <CheckboxPlanning checkboxData={checkboxField} />;
-    // case 3:
-    //   return <CheckboxForm checkboxData={checkboxField} position={3} />;
+    case 3:
+      return <CheckboxProcess checkboxData={checkboxField} />;
     // case 4:
     //   return <CheckboxForm checkboxData={checkboxField} position={4} />;
     // case 5:
@@ -121,7 +122,7 @@ export default function CheckoutPage() {
                       display: "flex",
                       justifyContent: "center",
                       height: "auto",
-                      mt: "20px",
+                      mt: "50px",
                       mb: "5px",
                     }}
                   >
