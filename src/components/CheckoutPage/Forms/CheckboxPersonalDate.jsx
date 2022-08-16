@@ -10,7 +10,7 @@ const CheckboxPersonalDate = ({ checkboxData }) => {
   return (
     <Paper
       sx={{
-        width: "40%",
+        width: { md: "45%", sm: "100%", xs: "100%" },
         justifyContent: "center",
         height: "auto",
         padding: "12px",

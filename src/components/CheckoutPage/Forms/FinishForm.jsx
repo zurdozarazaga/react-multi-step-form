@@ -6,7 +6,7 @@ const FinishForm = ({ checkboxData }) => {
   return (
     <Paper
       sx={{
-        width: "45%",
+        width: { md: "45%", sm: "100%", xs: "100%" },
         justifyContent: "center",
         height: "auto",
         padding: "12px",

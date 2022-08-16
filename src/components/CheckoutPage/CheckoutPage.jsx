@@ -73,6 +73,10 @@ export default function CheckoutPage() {
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
+  const matches = useMediaQuery("(max-width:954px)");
+  console.log("matches", matches);
+  const theme = useTheme();
+
   function _sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
@@ -101,13 +105,17 @@ export default function CheckoutPage() {
     setActiveStep(activeStep - 1);
   }
 
-  const matches = useMediaQuery("(max-width:954px)");
-  console.log("matches", matches);
-  const theme = useTheme();
-
   return (
     <>
-      <Typography m={2} component="h1" variant="h4" align="center">
+      <Typography
+        sx={{
+          fontWeight: "bold",
+        }}
+        m={2}
+        component="h1"
+        variant="h4"
+        align="center"
+      >
         Diagnóstico
       </Typography>
       <Stack
@@ -172,10 +180,16 @@ export default function CheckoutPage() {
                     }}
                   >
                     <Button
+                      sx={{
+                        backgroundColor: "#6e0dae",
+                        "&:hover": {
+                          backgroundColor: "#9a61c8",
+                        },
+                      }}
                       disabled={isSubmitting}
                       type="submit"
                       variant="contained"
-                      color="primary"
+                      // color="#9a61c8"
                     >
                       {isLastStep ? "Enviar" : "Next"}
                     </Button>
