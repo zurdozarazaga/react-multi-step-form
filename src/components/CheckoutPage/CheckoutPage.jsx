@@ -30,8 +30,6 @@ import FinishForm from "./Forms/FinishForm";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
-// import useStyles from './styles';
-
 const steps = [
   "Datos Personales",
   "Planificación",
@@ -44,7 +42,6 @@ const steps = [
 ];
 const { formId, formField } = checkoutFormModel;
 const { checkboxField } = checkboxData;
-console.log("firstCheckbox", checkboxField);
 function _renderStepContent(step) {
   switch (step) {
     case 0:
@@ -70,6 +67,7 @@ function _renderStepContent(step) {
 
 export default function CheckoutPage() {
   const [activeStep, setActiveStep] = useState(0);
+  console.log("activeStep", activeStep);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
@@ -84,14 +82,16 @@ export default function CheckoutPage() {
   async function _submitForm(values, actions) {
     await _sleep(1000);
     alert(JSON.stringify(values, null, 2));
+    //sets isSubmitting to false
     actions.setSubmitting(false);
-
+    // ver estado cuadno termina el formualario
     setActiveStep(activeStep + 1);
   }
 
   function _handleSubmit(values, actions) {
     console.log("values", values);
     console.log("actions", actions);
+    //if it's the last
     if (isLastStep) {
       _submitForm(values, actions);
     } else {
@@ -186,11 +186,12 @@ export default function CheckoutPage() {
                           backgroundColor: "#9a61c8",
                         },
                       }}
-                      disabled={isSubmitting}
+                      // disabled={isSubmitting} //is disabled when the form is submitted
                       type="submit"
                       variant="contained"
                       // color="#9a61c8"
                     >
+                      {/* if islaststep is true => "send" else "Next" */}
                       {isLastStep ? "Enviar" : "Next"}
                     </Button>
                     {/* {isSubmitting && <CircularProgress size={24} />} */}
