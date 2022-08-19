@@ -4,7 +4,6 @@ import React from "react";
 import { CheckboxField } from "../../FormFields";
 
 const CheckboxPlanning = ({ checkboxData }) => {
-  console.log("props", checkboxData);
   const { secondCheckbox } = checkboxData;
 
 

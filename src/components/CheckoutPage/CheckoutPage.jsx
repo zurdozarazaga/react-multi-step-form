@@ -6,7 +6,6 @@ import {
   StepLabel,
   Button,
   Typography,
-  CircularProgress,
   Box,
   MobileStepper,
   Stack,
@@ -14,7 +13,6 @@ import {
 import { Formik, Form } from "formik";
 
 import AddressForm from "./Forms/AddressForm";
-import CheckoutSuccess from "./CheckoutSuccess";
 
 import validationSchema from "./FormModel/validationSchema";
 import checkoutFormModel from "./FormModel/checkoutFormModel";
@@ -29,6 +27,8 @@ import CheckboxFamily from "./Forms/CheckboxFamily";
 import FinishForm from "./Forms/FinishForm";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
+import AppContext from "../../context/AppContext";
+import useResponse from "../../hooks/useResponse";
 
 const steps = [
   "Datos Personales",
@@ -66,21 +66,23 @@ function _renderStepContent(step) {
 }
 
 export default function CheckoutPage() {
+  const { addKeyAndValuesInArray, compareArrays } = useResponse(AppContext);
+
   const [activeStep, setActiveStep] = useState(0);
-  console.log("activeStep", activeStep);
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
   const matches = useMediaQuery("(max-width:954px)");
-  console.log("matches", matches);
   const theme = useTheme();
 
   function _sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  async function _submitForm(values, actions) {
+  async function _submitForm(values, actions, valuesResponse) {
     await _sleep(1000);
+    compareArrays(values);
+
     alert(JSON.stringify(values, null, 2));
     //sets isSubmitting to false
     actions.setSubmitting(false);
@@ -89,8 +91,8 @@ export default function CheckoutPage() {
   }
 
   function _handleSubmit(values, actions) {
-    console.log("values", values);
-    console.log("actions", actions);
+    // console.log("values", values);
+    // console.log("actions", actions);
     //if it's the last
     if (isLastStep) {
       _submitForm(values, actions);

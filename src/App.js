@@ -1,14 +1,17 @@
-import React from 'react';
-import MaterialLayout from './components/Layout/MaterialLayout';
-import CheckoutPage from './components/CheckoutPage';
+import React from "react";
+import MaterialLayout from "./components/Layout/MaterialLayout";
+import CheckoutPage from "./components/CheckoutPage";
+import useResponse from "./hooks/useResponse";
+import AppContext from "./context/AppContext";
 
 function App() {
+  const response = useResponse();
   return (
-    <div>
+    <AppContext.Provider value={response}>
       <MaterialLayout>
         <CheckoutPage />
       </MaterialLayout>
-    </div>
+    </AppContext.Provider>
   );
 }
 
