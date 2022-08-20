@@ -18,30 +18,19 @@ const useResponse = () => {
   //comparacion de dos arrays
   const compareArrays = (obj) => {
     const arr = addKeyAndValuesInArray(obj);
-    console.log(arr);
     for (let i = 0; i < arr.length; i++) {
-      console.log(arr[i]);
-      console.log(results[i]);
-      console.log(Object.keys(results[i]));
-      if (arr[i] === Object.keys(results[i])) {
-        return Object.values(results[i]);
-      } else {
-        return false;
-      // console.log(arr[i] === response[i]);
-      // if (arr1[i] !== arr2[i]) {
-      //   console.log(arr1[i], arr2[i]);
-      }
+      const KeyTrue = arr[i];
+      const names = Object.keys(response[i]) // key de cada objeto
+        .filter((key) => key.includes(KeyTrue)) // filtra los que contienen la key con el include
+        .reduce((obj, key) => {
+          return Object.assign(obj, {
+            // agrega los valores de los objetos que contienen la key
+            [key]: response[i][key],
+          });
+        }, {});
+      console.log(names);
     }
   };
-
-  // // obtener los valores de un array de obejtos
-  // const returnKeysOfArrayThatAreTrue = (arrayOfObjects) => {
-  //   if (Object.values(arrayOfObjects)) {
-  //   }
-  //   const keys = Object.keys(arrayOfObjects);
-  //   // console.log("Keys that are true", keys);
-  //   return keys;
-  // };
 
   const findMatch = (term) => {
     const match = response
