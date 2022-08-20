@@ -21,11 +21,16 @@ const useResponse = () => {
     console.log(arr);
     for (let i = 0; i < arr.length; i++) {
       console.log(arr[i]);
-      console.log(results.filter((item) => item.arr[i] === arr[i]));
+      console.log(results[i]);
+      console.log(Object.keys(results[i]));
+      if (arr[i] === Object.keys(results[i])) {
+        return Object.values(results[i]);
+      } else {
+        return false;
       // console.log(arr[i] === response[i]);
       // if (arr1[i] !== arr2[i]) {
       //   console.log(arr1[i], arr2[i]);
-      // }
+      }
     }
   };
 
