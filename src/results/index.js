@@ -56,6 +56,8 @@ const results = [
       "A mejorado su performance financiera con créditos bancarios, pero para hacerlo debe garantizar personalmente los préstamos. Acción sugerida: Evalúe las condiciones y prepare su empresa para acceder a créditos prendarios e hipotecarios.",
     mortgageCredit:
       "Los créditos prendarios e hipotecarios le han permitido un nuevo salto de expansión, aunque están limitados al capital existente o la compra de determinados bienes. Acción sugerida: Evaluar herramientas financiera que le permitan financiar proyectos sin el límite de su patrimonio.",
+    riskManagement:
+      "Ha implementado herramientas de financiamiento adecuadas a los proyectos de inversión. Su nivel es óptimo.",
   },
   {
     notBusinessFamily:

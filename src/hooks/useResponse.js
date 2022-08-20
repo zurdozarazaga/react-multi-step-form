@@ -18,9 +18,10 @@ const useResponse = () => {
   //comparacion de dos arrays
   const compareArrays = (obj) => {
     const arr = addKeyAndValuesInArray(obj);
+    const ArrayResonse = []; // array de respuestas
     for (let i = 0; i < arr.length; i++) {
-      const KeyTrue = arr[i];
-      const names = Object.keys(response[i]) // key de cada objeto
+      const KeyTrue = arr[i]; // key true
+      const names = Object.keys(response[i]) // key de cada objeto response
         .filter((key) => key.includes(KeyTrue)) // filtra los que contienen la key con el include
         .reduce((obj, key) => {
           return Object.assign(obj, {
@@ -28,8 +29,10 @@ const useResponse = () => {
             [key]: response[i][key],
           });
         }, {});
-      console.log(names);
+      ArrayResonse.push(names);
     }
+    console.log(ArrayResonse);
+    return ArrayResonse;
   };
 
   const findMatch = (term) => {

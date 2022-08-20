@@ -9,6 +9,7 @@ import {
   Box,
   MobileStepper,
   Stack,
+  CircularProgress,
 } from "@mui/material";
 import { Formik, Form } from "formik";
 
@@ -196,7 +197,7 @@ export default function CheckoutPage() {
                       {/* if islaststep is true => "send" else "Next" */}
                       {isLastStep ? "Enviar" : "Next"}
                     </Button>
-                    {/* {isSubmitting && <CircularProgress size={24} />} */}
+                    {isSubmitting && <CircularProgress size={24} />}
                   </Box>
                 </Box>
               )}
