@@ -1,6 +1,6 @@
-import * as Yup from 'yup';
-import moment from 'moment';
-import checkoutFormModel from './checkoutFormModel';
+import * as Yup from "yup";
+import moment from "moment";
+import checkoutFormModel from "./checkoutFormModel";
 const {
   formField: {
     firstName,

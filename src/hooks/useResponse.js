@@ -18,7 +18,7 @@ const useResponse = () => {
   //comparacion de dos arrays
   const compareArrays = (obj) => {
     const arr = addKeyAndValuesInArray(obj);
-    const ArrayResonse = []; // array de respuestas
+    const ArrayResonse = {}; // array de respuestas
     for (let i = 0; i < arr.length; i++) {
       const KeyTrue = arr[i]; // key true
       const names = Object.keys(response[i]) // key de cada objeto response
@@ -26,12 +26,11 @@ const useResponse = () => {
         .reduce((obj, key) => {
           return Object.assign(obj, {
             // agrega los valores de los objetos que contienen la key
-            [key]: response[i][key],
+            [i]: response[i][key],
           });
         }, {});
-      ArrayResonse.push(names);
+      Object.assign(ArrayResonse, names);
     }
-    console.log(ArrayResonse);
     return ArrayResonse;
   };
 

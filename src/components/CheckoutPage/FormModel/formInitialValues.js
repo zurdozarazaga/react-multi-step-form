@@ -1,4 +1,4 @@
-import checkoutFormModel from './checkoutFormModel';
+import checkoutFormModel from "./checkoutFormModel";
 const {
   formField: {
     firstName,
@@ -16,11 +16,11 @@ const {
 } = checkoutFormModel;
 
 export default {
-  [firstName.name]: '',
-  [lastName.name]: '',
-  [email.name]: '',
-  [profession.name]: '',
-  [area.name]: '',
-  [phone.name]: '',
-  [job.name]: '',
+  [firstName.name]: "",
+  [lastName.name]: "",
+  [email.name]: "",
+  [profession.name]: "",
+  [area.name]: "",
+  [phone.name]: "",
+  [job.name]: "",
 };

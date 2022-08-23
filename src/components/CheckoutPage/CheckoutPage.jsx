@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import emailjs from "@emailjs/browser";
 import {
   Stepper,
   Step,
@@ -67,7 +68,7 @@ function _renderStepContent(step) {
 }
 
 export default function CheckoutPage() {
-  const { addKeyAndValuesInArray, compareArrays } = useResponse(AppContext);
+  const { compareArrays } = useResponse(AppContext);
 
   const [activeStep, setActiveStep] = useState(0);
   const currentValidationSchema = validationSchema[activeStep];
@@ -82,9 +83,27 @@ export default function CheckoutPage() {
 
   async function _submitForm(values, actions, valuesResponse) {
     await _sleep(1000);
-    compareArrays(values);
 
-    alert(JSON.stringify(values, null, 2));
+    const response = compareArrays(values);
+    // console.table(response);
+    const responseConcatWhitValues = Object.assign(values, response);
+    console.log(responseConcatWhitValues);
+
+    emailjs
+      .send(
+        process.env.REACT_APP_SERVICE_EMAILJS,
+        process.env.REACT_APP_TEMPLATE_ID,
+        responseConcatWhitValues,
+        process.env.REACT_APP_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
     //sets isSubmitting to false
     actions.setSubmitting(false);
     // ver estado cuadno termina el formualario
@@ -92,7 +111,6 @@ export default function CheckoutPage() {
   }
 
   function _handleSubmit(values, actions) {
-    // console.log("values", values);
     // console.log("actions", actions);
     //if it's the last
     if (isLastStep) {
