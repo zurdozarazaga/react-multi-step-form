@@ -20,6 +20,9 @@ const CheckboxPlanning = ({ checkboxData, checkError }) => {
       <Typography variant="h6" gutterBottom>
         {`${secondCheckbox.position}. ${secondCheckbox.text}`}
       </Typography>
+      <Typography variant="subtitle2" gutterBottom>
+        Indique una sola opción porfavor*
+      </Typography>
       <Box sx={{ display: "block" }}>
         <CheckboxField
           name={secondCheckbox.name1}

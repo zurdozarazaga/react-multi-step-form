@@ -19,6 +19,9 @@ const CheckboxProcess = ({ checkboxData, checkError }) => {
       <Typography variant="h6" gutterBottom>
         {`${thirdCheckbox.position}. ${thirdCheckbox.text}`}
       </Typography>
+      <Typography variant="subtitle2" gutterBottom>
+        Indique una sola opción porfavor*
+      </Typography>
       <Box spacing={2} sx={{ display: "block" }}>
         <CheckboxField
           name={thirdCheckbox.name1}

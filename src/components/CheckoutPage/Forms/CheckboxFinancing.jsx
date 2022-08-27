@@ -19,6 +19,9 @@ const CheckboxFinancing = ({ checkboxData, checkError }) => {
       <Typography variant="h6" gutterBottom>
         {`${fifthCheckbox.position}. ${fifthCheckbox.text}`}
       </Typography>
+      <Typography variant="subtitle2" gutterBottom>
+        Indique una sola opción porfavor*
+      </Typography>
       <Box spacing={2} sx={{ display: "block" }}>
         <CheckboxField
           name={fifthCheckbox.name1}

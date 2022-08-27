@@ -19,6 +19,9 @@ const CheckboxInformation = ({ checkboxData, checkError }) => {
       <Typography variant="h6" gutterBottom>
         {`${fourthCheckbox.position}. ${fourthCheckbox.text}`}
       </Typography>
+      <Typography variant="subtitle2" gutterBottom>
+        Indique una sola opción porfavor*
+      </Typography>
       <Box spacing={2} sx={{ display: "block" }}>
         <CheckboxField
           name={fourthCheckbox.name1}

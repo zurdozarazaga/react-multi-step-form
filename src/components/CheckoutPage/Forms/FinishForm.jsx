@@ -12,13 +12,72 @@ const FinishForm = ({ checkboxData }) => {
         padding: "12px",
       }}
     >
-      <Typography variant="h6" gutterBottom>
-        Finalizando...
-      </Typography>
       <Box spacing={2} sx={{ display: "block" }}>
-        <Typography variant="p" gutterBottom>
-          Usted recibirá un mail con los resultados de su evaluación.
+        <Box
+          spacing={2}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography variant="h5" gutterBottom>
+            Ya diste tu primer gran paso!
+          </Typography>
+        </Box>
+        <Typography variant="h6" gutterBottom>
+          Las respuestas a tu diagnóstico llegarán a tu casilla de correo en
+          breve. Cuanto más entiendes tú organización, más preparado estás para
+          desafiar el proceso de superación.
         </Typography>
+        <Box
+          spacing={2}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            Sigamos en contacto.
+          </Typography>
+        </Box>
+        <Box
+          spacing={2}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            Equipo aqnitio
+          </Typography>
+        </Box>
+        <Box
+          spacing={2}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography variant="h6" fontWeight="bold" color="blue" gutterBottom>
+            info@aqnitio.com.ar
+          </Typography>
+        </Box>
+        <Box
+          spacing={2}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography variant="h6" fontWeight="bold" color="blue" gutterBottom>
+            www.aqnitio.com.ar
+          </Typography>
+        </Box>
       </Box>
     </Paper>
   );

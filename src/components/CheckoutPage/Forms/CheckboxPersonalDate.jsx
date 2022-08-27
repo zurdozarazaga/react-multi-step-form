@@ -20,6 +20,9 @@ const CheckboxPersonalDate = ({ checkboxData, checkError }) => {
       <Typography variant="h6" gutterBottom>
         {`${firstCheckbox.position}. ${firstCheckbox.text}`}
       </Typography>
+      <Typography variant="subtitle2" gutterBottom>
+        Indique una sola opción porfavor*
+      </Typography>
       <Box spacing={2} sx={{ display: "block" }}>
         <CheckboxField
           name={firstCheckbox.name1}
