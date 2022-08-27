@@ -269,7 +269,6 @@ export default function CheckoutPage() {
                           backgroundColor: "#9a61c8",
                         },
                       }}
-                      display={isFinishStep ? "none" : "block"}
                       // disabled={isSubmitting} //is disabled when the form is submitted
                       type="submit"
                       variant="contained"
@@ -291,7 +290,7 @@ export default function CheckoutPage() {
                 {matches && (
                   <MobileStepper
                     variant="dots"
-                    steps={steps.length}
+                    steps={isFinishStep ? 0 : steps.length}
                     position="static"
                     activeStep={activeStep}
                     sx={{
@@ -299,18 +298,23 @@ export default function CheckoutPage() {
                       flexGrow: 2,
                     }}
                     nextButton={
-                      <Button
-                        size="small"
-                        type="submit"
-                        disabled={activeStep === 8}
+                      <Box
+                        display={isFinishStep ? "none" : "flex"}
+                        justifyContent="space-between"
                       >
-                        {isLastStep ? "Enviar" : "Next"}
-                        {theme.direction === "rtl" ? (
-                          <KeyboardArrowLeft />
-                        ) : (
-                          <KeyboardArrowRight />
-                        )}
-                      </Button>
+                        <Button
+                          size="small"
+                          type="submit"
+                          disabled={activeStep === 8}
+                        >
+                          {isLastStep ? "Enviar" : "Next"}
+                          {theme.direction === "rtl" ? (
+                            <KeyboardArrowLeft />
+                          ) : (
+                            <KeyboardArrowRight />
+                          )}
+                        </Button>
+                      </Box>
                     }
                     // backButton={
                     // <Button
