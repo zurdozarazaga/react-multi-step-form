@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import { CheckboxField } from "../../FormFields";
 
-const CheckboxProcess = ({ checkboxData }) => {
+const CheckboxProcess = ({ checkboxData, checkError }) => {
   // console.log("props", checkboxPersonalData);
   const { thirdCheckbox } = checkboxData;
 
@@ -41,6 +41,11 @@ const CheckboxProcess = ({ checkboxData }) => {
           label={thirdCheckbox.labelCheckbox5}
         />
       </Box>
+      {checkError === true && (
+          <Typography variant="subtitle2" color="red" gutterBottom>
+            debe ingresar una sola opción*
+          </Typography>
+        )}
     </Paper>
   );
 };

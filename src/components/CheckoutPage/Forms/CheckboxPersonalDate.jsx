@@ -3,9 +3,10 @@ import { Box } from "@mui/system";
 import React from "react";
 import { CheckboxField } from "../../FormFields";
 
-const CheckboxPersonalDate = ({ checkboxData }) => {
+const CheckboxPersonalDate = ({ checkboxData, checkError }) => {
   // console.log("props", checkboxPersonalData);
   const { firstCheckbox } = checkboxData;
+  console.log(checkError);
 
   return (
     <Paper
@@ -40,6 +41,11 @@ const CheckboxPersonalDate = ({ checkboxData }) => {
           name={firstCheckbox.name5}
           label={firstCheckbox.labelCheckbox5}
         />
+        {checkError === true && (
+          <Typography variant="subtitle2" color="red" gutterBottom>
+            debe ingresar una sola opción*
+          </Typography>
+        )}
       </Box>
     </Paper>
   );

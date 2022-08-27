@@ -31,6 +31,7 @@ import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import AppContext from "../../context/AppContext";
 import useResponse from "../../hooks/useResponse";
+import useValidation from "../../hooks/useValidation";
 
 const steps = [
   "Datos Personales",
@@ -44,22 +45,43 @@ const steps = [
 ];
 const { formId, formField } = checkoutFormModel;
 const { checkboxField } = checkboxData;
-function _renderStepContent(step) {
+function _renderStepContent(step, errorTrue = false) {
   switch (step) {
     case 0:
       return <AddressForm formField={formField} />;
     case 1:
-      return <CheckboxPersonalDate checkboxData={checkboxField} />;
+      return (
+        <CheckboxPersonalDate
+          checkboxData={checkboxField}
+          checkError={errorTrue}
+        />
+      );
     case 2:
-      return <CheckboxPlanning checkboxData={checkboxField} />;
+      return (
+        <CheckboxPlanning checkboxData={checkboxField} checkError={errorTrue} />
+      );
     case 3:
-      return <CheckboxProcess checkboxData={checkboxField} />;
+      return (
+        <CheckboxProcess checkboxData={checkboxField} checkError={errorTrue} />
+      );
     case 4:
-      return <CheckboxInformation checkboxData={checkboxField} />;
+      return (
+        <CheckboxInformation
+          checkboxData={checkboxField}
+          checkError={errorTrue}
+        />
+      );
     case 5:
-      return <CheckboxFinancing checkboxData={checkboxField} />;
+      return (
+        <CheckboxFinancing
+          checkboxData={checkboxField}
+          checkError={errorTrue}
+        />
+      );
     case 6:
-      return <CheckboxFamily checkboxData={checkboxField} />;
+      return (
+        <CheckboxFamily checkboxData={checkboxField} checkError={errorTrue} />
+      );
     case 7:
       return <FinishForm />;
     default:
@@ -68,9 +90,12 @@ function _renderStepContent(step) {
 }
 
 export default function CheckoutPage() {
-  const { compareArrays } = useResponse(AppContext);
+  const { addKeyAndValuesInArray, compareArrays } = useResponse(AppContext);
+  const { validationCheckbox } = useValidation(AppContext);
 
   const [activeStep, setActiveStep] = useState(0);
+  const [checkError, setCheckError] = useState(false);
+
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
 
@@ -89,21 +114,21 @@ export default function CheckoutPage() {
     const responseConcatWhitValues = Object.assign(values, response);
     console.log(responseConcatWhitValues);
 
-    emailjs
-      .send(
-        process.env.REACT_APP_SERVICE_EMAILJS,
-        process.env.REACT_APP_TEMPLATE_ID,
-        responseConcatWhitValues,
-        process.env.REACT_APP_PUBLIC_KEY
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    // emailjs
+    //   .send(
+    //     process.env.REACT_APP_SERVICE_EMAILJS,
+    //     process.env.REACT_APP_TEMPLATE_ID,
+    //     responseConcatWhitValues,
+    //     process.env.REACT_APP_PUBLIC_KEY
+    //   )
+    //   .then(
+    //     (result) => {
+    //       console.log(result.text);
+    //     },
+    //     (error) => {
+    //       console.log(error.text);
+    //     }
+    //   );
     //sets isSubmitting to false
     actions.setSubmitting(false);
     // ver estado cuadno termina el formualario
@@ -111,7 +136,21 @@ export default function CheckoutPage() {
   }
 
   function _handleSubmit(values, actions) {
-    // console.log("actions", actions);
+    console.log(actions);
+    let checkboxTrue = addKeyAndValuesInArray(values);
+    // if (checkboxTrue.length > 1) {
+    //   checkboxTrue = [];
+    // }
+    console.log("antes de validar", checkboxTrue);
+    const valid = validationCheckbox(activeStep, actions, values, checkboxTrue);
+    console.log("despues de validar", checkboxTrue);
+    console.log(valid);
+    setCheckError(valid);
+    if (valid) {
+      actions.setSubmitting(false);
+      return;
+    }
+
     //if it's the last
     if (isLastStep) {
       _submitForm(values, actions);
@@ -173,7 +212,7 @@ export default function CheckoutPage() {
                   mb: "5px",
                 }}
               >
-                {_renderStepContent(activeStep)}
+                {_renderStepContent(activeStep, checkError)}
               </Box>
 
               {!matches && (
@@ -215,7 +254,7 @@ export default function CheckoutPage() {
                       {/* if islaststep is true => "send" else "Next" */}
                       {isLastStep ? "Enviar" : "Next"}
                     </Button>
-                    {isSubmitting && <CircularProgress size={24} />}
+                    {/* {isSubmitting && <CircularProgress size={24} />} */}
                   </Box>
                 </Box>
               )}

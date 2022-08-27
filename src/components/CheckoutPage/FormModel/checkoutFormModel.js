@@ -35,11 +35,6 @@ const checkoutFormModel = {
       label: "¿Cuál es tu puesto en la empresa?*",
       requiredErrorMsg: "job is required",
     },
-    country: {
-      name: "country",
-      label: "Country*",
-      requiredErrorMsg: "Country is required",
-    },
   },
 };
 
