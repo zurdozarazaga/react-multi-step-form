@@ -32,6 +32,7 @@ import { useTheme } from "@mui/material/styles";
 import AppContext from "../../context/AppContext";
 import useResponse from "../../hooks/useResponse";
 import useValidation from "../../hooks/useValidation";
+import EmailSent from "./Forms/EmailSent";
 
 const steps = [
   "Datos Personales",
@@ -84,6 +85,8 @@ function _renderStepContent(step, errorTrue = false) {
       );
     case 7:
       return <FinishForm />;
+    case 8:
+      return <EmailSent />;
     default:
       return <div>Not Found</div>;
   }
@@ -95,9 +98,12 @@ export default function CheckoutPage() {
 
   const [activeStep, setActiveStep] = useState(0);
   const [checkError, setCheckError] = useState(false);
+  const [checkButtonBack, setcheckButtonBack] = useState(false);
 
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
+  const isFinishStep = activeStep === steps.length;
+  console.log(isFinishStep);
 
   const matches = useMediaQuery("(max-width:954px)");
   const theme = useTheme();
@@ -110,7 +116,6 @@ export default function CheckoutPage() {
     await _sleep(1000);
 
     const response = compareArrays(values);
-    // console.table(response);
     const responseConcatWhitValues = Object.assign(values, response);
     console.log(responseConcatWhitValues);
 
@@ -124,6 +129,10 @@ export default function CheckoutPage() {
     //   .then(
     //     (result) => {
     //       console.log(result.text);
+    //       if (result.text === "OK") {
+    //         setActiveStep(steps.length + 1);
+    //         _renderStepContent(activeStep);
+    //       }
     //     },
     //     (error) => {
     //       console.log(error.text);
@@ -138,19 +147,31 @@ export default function CheckoutPage() {
   function _handleSubmit(values, actions) {
     console.log(actions);
     let checkboxTrue = addKeyAndValuesInArray(values);
-    // if (checkboxTrue.length > 1) {
-    //   checkboxTrue = [];
-    // }
+    if (checkButtonBack) {
+      if (activeStep < checkboxTrue.length) {
+        while (activeStep !== checkboxTrue.length) {
+          checkboxTrue.pop();
+          console.log("en el while", checkboxTrue);
+        }
+        console.log("retorno del while", checkboxTrue);
+      }
+    }
     console.log("antes de validar", checkboxTrue);
-    const valid = validationCheckbox(activeStep, actions, values, checkboxTrue);
+    setcheckButtonBack(false);
+    const valid = validationCheckbox(
+      activeStep,
+      actions,
+      values,
+      checkboxTrue,
+      checkButtonBack
+    );
+
     console.log("despues de validar", checkboxTrue);
-    console.log(valid);
     setCheckError(valid);
     if (valid) {
       actions.setSubmitting(false);
       return;
     }
-
     //if it's the last
     if (isLastStep) {
       _submitForm(values, actions);
@@ -163,6 +184,7 @@ export default function CheckoutPage() {
 
   function _handleBack() {
     setActiveStep(activeStep - 1);
+    setcheckButtonBack(true);
   }
 
   return (
@@ -227,14 +249,15 @@ export default function CheckoutPage() {
                     justifyContent: "space-around",
                   }}
                 >
-                  {activeStep !== 0 && (
-                    <Button onClick={_handleBack} className="">
+                  {/* {activeStep !== 0 &&
+                    {
+                      <Button onClick={_handleBack} className="">
                       Back
                     </Button>
-                  )}
+                    }} */}
                   <Box
+                    display={isFinishStep ? "none" : "flex"}
                     sx={{
-                      display: "flex",
                       flexDirection: "row",
                       justifyContent: "flex-end",
                     }}
@@ -246,6 +269,7 @@ export default function CheckoutPage() {
                           backgroundColor: "#9a61c8",
                         },
                       }}
+                      display={isFinishStep ? "none" : "block"}
                       // disabled={isSubmitting} //is disabled when the form is submitted
                       type="submit"
                       variant="contained"
@@ -288,20 +312,20 @@ export default function CheckoutPage() {
                         )}
                       </Button>
                     }
-                    backButton={
-                      <Button
-                        size="small"
-                        onClick={_handleBack}
-                        disabled={activeStep === 0}
-                      >
-                        {theme.direction === "rtl" ? (
-                          <KeyboardArrowRight />
-                        ) : (
-                          <KeyboardArrowLeft />
-                        )}
-                        Back
-                      </Button>
-                    }
+                    // backButton={
+                    // <Button
+                    //   size="small"
+                    //   onClick={_handleBack}
+                    //   disabled={activeStep === 0}
+                    // >
+                    //   {theme.direction === "rtl" ? (
+                    //     <KeyboardArrowRight />
+                    //   ) : (
+                    //     <KeyboardArrowLeft />
+                    //   )}
+                    //   Back
+                    // </Button>
+                    // }
                   />
                 )}
               </Stack>

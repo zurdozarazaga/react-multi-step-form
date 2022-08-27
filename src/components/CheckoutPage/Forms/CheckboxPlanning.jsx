@@ -6,7 +6,6 @@ import { CheckboxField } from "../../FormFields";
 const CheckboxPlanning = ({ checkboxData, checkError }) => {
   const { secondCheckbox } = checkboxData;
 
-
   return (
     <Paper
       elevation={2}
@@ -46,10 +45,10 @@ const CheckboxPlanning = ({ checkboxData, checkError }) => {
         />
       </Box>
       {checkError === true && (
-          <Typography variant="subtitle2" color="red" gutterBottom>
-            debe ingresar una sola opción*
-          </Typography>
-        )}
+        <Typography variant="subtitle2" color="red" gutterBottom>
+          debe ingresar una sola opción*
+        </Typography>
+      )}
     </Paper>
   );
 };

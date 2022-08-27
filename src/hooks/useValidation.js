@@ -1,13 +1,22 @@
-import useState from "react";
-import AppContext from "../context/AppContext";
-import useResponse from "./useResponse";
-
 const useValidation = () => {
-  const { addKeyAndValuesInArray } = useResponse(AppContext);
-  // const [checkedTrueValidation, setcheckedTrueValidation] = useState([]);
-
-  const validationCheckbox = (activeStep, values, actions, checkboxTrue) => {
-    console.log("en el validationCheckbox", checkboxTrue);
+  const validationCheckbox = (
+    activeStep,
+    values,
+    actions,
+    checkboxTrue,
+    checkButtonBackTrueOfFalse
+  ) => {
+    console.log("checkButtonBackTrueOfFalse", checkButtonBackTrueOfFalse);
+    if (checkButtonBackTrueOfFalse) {
+      if (activeStep < checkboxTrue.length) {
+        console.log("checkboxTrue en el while",checkboxTrue.length);
+        while (activeStep !== checkboxTrue.length) {
+          checkboxTrue.pop();
+          console.log("en el while", checkboxTrue);
+        }
+        console.log("retorno del while", checkboxTrue);
+      }
+    }
     console.log(activeStep);
     if (
       activeStep >= 1 &&
@@ -15,9 +24,8 @@ const useValidation = () => {
       checkboxTrue.length !== activeStep
     ) {
       console.log("se selecciono mas de una opcion");
-      // actions.isValidating(false);
+
       return true;
-      // console.log(checkboxTrue);
     }
 
     return false;

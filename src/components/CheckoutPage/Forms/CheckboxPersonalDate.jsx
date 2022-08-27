@@ -4,9 +4,7 @@ import React from "react";
 import { CheckboxField } from "../../FormFields";
 
 const CheckboxPersonalDate = ({ checkboxData, checkError }) => {
-  // console.log("props", checkboxPersonalData);
   const { firstCheckbox } = checkboxData;
-  console.log(checkError);
 
   return (
     <Paper
