@@ -10,7 +10,6 @@ import {
   Box,
   MobileStepper,
   Stack,
-  CircularProgress,
 } from "@mui/material";
 import { Formik, Form } from "formik";
 
@@ -33,6 +32,7 @@ import AppContext from "../../context/AppContext";
 import useResponse from "../../hooks/useResponse";
 import useValidation from "../../hooks/useValidation";
 import EmailSent from "./Forms/EmailSent";
+import NotFound from "./Forms/NotFound";
 
 const steps = [
   "Datos Personales",
@@ -88,7 +88,7 @@ function _renderStepContent(step, errorTrue = false) {
     case 8:
       return <EmailSent />;
     default:
-      return <div>Not Found</div>;
+      return <NotFound />;
   }
 }
 
@@ -104,44 +104,45 @@ export default function CheckoutPage() {
   const isLastStep = activeStep === steps.length - 1;
   const isFinishStep = activeStep === steps.length;
   console.log(isFinishStep);
+  const [isFinishStepState, setisFinishStepState] = useState(isFinishStep);
+  console.log(isFinishStepState);
 
   const matches = useMediaQuery("(max-width:954px)");
   const theme = useTheme();
 
-  function _sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  // function _sleep(ms) {
+  //   return new Promise((resolve) => setTimeout(resolve, ms));
+  // }
 
-  async function _submitForm(values, actions, valuesResponse) {
-    await _sleep(1000);
-
+  function _submitForm(values, actions, valuesResponse) {
     const response = compareArrays(values);
     const responseConcatWhitValues = Object.assign(values, response);
     console.log(responseConcatWhitValues);
 
-    // emailjs
-    //   .send(
-    //     process.env.REACT_APP_SERVICE_EMAILJS,
-    //     process.env.REACT_APP_TEMPLATE_ID,
-    //     responseConcatWhitValues,
-    //     process.env.REACT_APP_PUBLIC_KEY
-    //   )
-    //   .then(
-    //     (result) => {
-    //       console.log(result.text);
-    //       if (result.text === "OK") {
-    //         setActiveStep(steps.length + 1);
-    //         _renderStepContent(activeStep);
-    //       }
-    //     },
-    //     (error) => {
-    //       console.log(error.text);
-    //     }
-    //   );
+    emailjs
+      .send(
+        process.env.REACT_APP_SERVICE_EMAILJS,
+        process.env.REACT_APP_TEMPLATE_ID,
+        responseConcatWhitValues,
+        process.env.REACT_APP_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          if (result.text === "OK") {
+            setisFinishStepState(true);
+            setActiveStep(activeStep + 1);
+          }
+        },
+        (error) => {
+          console.log(error.text);
+          setisFinishStepState(true);
+          setActiveStep(activeStep + 100);
+        }
+      );
     //sets isSubmitting to false
     actions.setSubmitting(false);
     // ver estado cuadno termina el formualario
-    setActiveStep(activeStep + 1);
   }
 
   function _handleSubmit(values, actions) {
@@ -182,10 +183,10 @@ export default function CheckoutPage() {
     }
   }
 
-  function _handleBack() {
-    setActiveStep(activeStep - 1);
-    setcheckButtonBack(true);
-  }
+  // function _handleBack() {
+  //   setActiveStep(activeStep - 1);
+  //   setcheckButtonBack(true);
+  // }
 
   return (
     <>
@@ -256,7 +257,7 @@ export default function CheckoutPage() {
                     </Button>
                     }} */}
                   <Box
-                    display={isFinishStep ? "none" : "flex"}
+                    display={isFinishStepState ? "none" : "flex"}
                     sx={{
                       flexDirection: "row",
                       justifyContent: "flex-end",
@@ -290,7 +291,7 @@ export default function CheckoutPage() {
                 {matches && (
                   <MobileStepper
                     variant="dots"
-                    steps={isFinishStep ? 0 : steps.length}
+                    steps={isFinishStepState ? 0 : steps.length}
                     position="static"
                     activeStep={activeStep}
                     sx={{
@@ -299,7 +300,7 @@ export default function CheckoutPage() {
                     }}
                     nextButton={
                       <Box
-                        display={isFinishStep ? "none" : "flex"}
+                        display={isFinishStepState ? "none" : "flex"}
                         justifyContent="space-between"
                       >
                         <Button

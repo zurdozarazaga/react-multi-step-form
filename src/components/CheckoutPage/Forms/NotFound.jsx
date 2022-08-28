@@ -2,7 +2,7 @@ import { Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
-const EmailSent = ({ checkboxData }) => {
+const NotFound = () => {
   return (
     <Paper
       sx={{
@@ -22,7 +22,7 @@ const EmailSent = ({ checkboxData }) => {
           }}
         >
           <Typography variant="h5" gutterBottom>
-            Mensaje enviado con éxito!
+            Error inesperado 😕
           </Typography>
         </Box>
         <Box
@@ -33,7 +33,8 @@ const EmailSent = ({ checkboxData }) => {
           }}
         >
           <Typography variant="h6" gutterBottom>
-            Muchas gracias por haber contestado
+            Ocurrió un error en el procesos. Compruebe su conexión o los datos
+            ingresados y vuelva a intentarlo
           </Typography>
         </Box>
       </Box>
@@ -41,4 +42,4 @@ const EmailSent = ({ checkboxData }) => {
   );
 };
 
-export default EmailSent;
+export default NotFound;

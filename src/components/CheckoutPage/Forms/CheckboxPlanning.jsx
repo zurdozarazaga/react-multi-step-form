@@ -10,7 +10,7 @@ const CheckboxPlanning = ({ checkboxData, checkError }) => {
     <Paper
       elevation={2}
       sx={{
-        width: { md: "45%", sm: "100%", xs: "100%" },
+        width: { md: "45%", sm: "70%", xs: "100%" },
         justifyContent: "center",
         height: "auto",
         padding: "12px",
