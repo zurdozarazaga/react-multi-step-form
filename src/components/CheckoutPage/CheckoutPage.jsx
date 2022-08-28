@@ -109,6 +109,7 @@ export default function CheckoutPage() {
   console.log(isFinishStepState);
 
   const matches = useMediaQuery("(max-width:954px)");
+  const matchFooter = useMediaQuery("(max-width:340px)");
   const theme = useTheme();
 
   // function _sleep(ms) {
@@ -226,7 +227,10 @@ export default function CheckoutPage() {
       >
         {({ isSubmitting }) => (
           <Form id={formId}>
-            <Box sx={{ height: "100vh" }}>
+            <Box
+              sx={{ height: (matchFooter) => (matchFooter ? "100vh" : "auto") }}
+              // sx={{ height: "auto" }}
+            >
               <Box
                 sx={{
                   display: "flex",

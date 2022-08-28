@@ -5,13 +5,13 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <Stack spacing={2} sx={{ justifyContent: "center" }}>
+      <Stack spacing={2} sx={{ justifyContent: "center", height: "auto" }}>
         <Stack
           direction="row"
           sx={{
             justifyContent: "center",
             width: "100%",
-            height: "auto",
+            // height: "auto",
             backgroundSize: "cover",
           }}
         >
