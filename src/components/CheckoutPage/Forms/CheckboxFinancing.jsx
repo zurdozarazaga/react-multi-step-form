@@ -4,7 +4,6 @@ import React from "react";
 import { CheckboxField } from "../../FormFields";
 
 const CheckboxFinancing = ({ checkboxData, checkError }) => {
-  // console.log("props", checkboxPersonalData);
   const { fifthCheckbox } = checkboxData;
 
   return (
@@ -45,10 +44,10 @@ const CheckboxFinancing = ({ checkboxData, checkError }) => {
         />
       </Box>
       {checkError === true && (
-          <Typography variant="subtitle2" color="red" gutterBottom>
-            debe ingresar una sola opción*
-          </Typography>
-        )}
+        <Typography variant="subtitle2" color="red" gutterBottom>
+          debe ingresar una sola opción*
+        </Typography>
+      )}
     </Paper>
   );
 };

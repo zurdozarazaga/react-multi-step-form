@@ -104,22 +104,15 @@ export default function CheckoutPage() {
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
   const isFinishStep = activeStep === steps.length;
-  console.log(isFinishStep);
   const [isFinishStepState, setisFinishStepState] = useState(isFinishStep);
-  console.log(isFinishStepState);
 
   const matches = useMediaQuery("(max-width:954px)");
   const matchFooter = useMediaQuery("(max-width:340px)");
   const theme = useTheme();
 
-  // function _sleep(ms) {
-  //   return new Promise((resolve) => setTimeout(resolve, ms));
-  // }
-
   function _submitForm(values, actions, valuesResponse) {
     const response = compareArrays(values);
     const responseConcatWhitValues = Object.assign(values, response);
-    console.log(responseConcatWhitValues);
     actions.setSubmitting(true);
 
     emailjs
@@ -145,24 +138,17 @@ export default function CheckoutPage() {
           actions.setSubmitting(false);
         }
       );
-    //sets isSubmitting to false
-    // actions.setSubmitting(false);
-    // ver estado cuadno termina el formualario
   }
 
   function _handleSubmit(values, actions) {
-    console.log(actions);
     let checkboxTrue = addKeyAndValuesInArray(values);
     if (checkButtonBack) {
       if (activeStep < checkboxTrue.length) {
         while (activeStep !== checkboxTrue.length) {
           checkboxTrue.pop();
-          console.log("en el while", checkboxTrue);
         }
-        console.log("retorno del while", checkboxTrue);
       }
     }
-    console.log("antes de validar", checkboxTrue);
     setcheckButtonBack(false);
     const valid = validationCheckbox(
       activeStep,
@@ -172,7 +158,6 @@ export default function CheckoutPage() {
       checkButtonBack
     );
 
-    console.log("despues de validar", checkboxTrue);
     setCheckError(valid);
     if (valid) {
       actions.setSubmitting(false);
@@ -187,11 +172,6 @@ export default function CheckoutPage() {
       actions.setSubmitting(false);
     }
   }
-
-  // function _handleBack() {
-  //   setActiveStep(activeStep - 1);
-  //   setcheckButtonBack(true);
-  // }
 
   return (
     <>
@@ -260,12 +240,6 @@ export default function CheckoutPage() {
                       justifyContent: "space-around",
                     }}
                   >
-                    {/* {activeStep !== 0 &&
-                    {
-                      <Button onClick={_handleBack} className="">
-                      Back
-                    </Button>
-                    }} */}
                     <Box
                       display={isFinishStepState ? "none" : "flex"}
                       sx={{
@@ -280,12 +254,9 @@ export default function CheckoutPage() {
                             backgroundColor: "#9a61c8",
                           },
                         }}
-                        // disabled={isSubmitting} //is disabled when the form is submitted
                         type="submit"
                         variant="contained"
-                        // color="#9a61c8"
                       >
-                        {/* if islaststep is true => "send" else "Next" */}
                         {isLastStep ? "Enviar" : "Next"}
                       </Button>
                     </Box>
@@ -326,20 +297,6 @@ export default function CheckoutPage() {
                           </Button>
                         </Box>
                       }
-                      // backButton={
-                      // <Button
-                      //   size="small"
-                      //   onClick={_handleBack}
-                      //   disabled={activeStep === 0}
-                      // >
-                      //   {theme.direction === "rtl" ? (
-                      //     <KeyboardArrowRight />
-                      //   ) : (
-                      //     <KeyboardArrowLeft />
-                      //   )}
-                      //   Back
-                      // </Button>
-                      // }
                     />
                   )}
                 </Stack>

@@ -33,7 +33,7 @@ const NotFound = () => {
           }}
         >
           <Typography variant="h6" gutterBottom>
-            Ocurrió un error en el procesos. Compruebe su conexión o los datos
+            Ocurrió un error en el proceso. Compruebe su conexión o los datos
             ingresados y vuelva a intentarlo
           </Typography>
         </Box>
