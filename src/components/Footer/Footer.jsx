@@ -1,5 +1,4 @@
 import { Avatar, Link, Stack, Typography } from "@mui/material";
-import { Container } from "@mui/system";
 import React from "react";
 
 //footer
@@ -12,7 +11,6 @@ const Footer = () => {
           sx={{
             justifyContent: "center",
             width: "100%",
-            // height: "auto",
             backgroundSize: "cover",
           }}
         >
