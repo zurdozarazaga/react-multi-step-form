@@ -1,10 +1,10 @@
 import React from 'react';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid } from '@mui/material';
 import useStyles from './styles';
 
 function PaymentDetails(props) {
   const { formValues } = props;
-  const classes = useStyles();
+  // const classes = useStyles();
   const { firstName, lastName, address1 } = formValues;
   return (
     <Grid item xs={12} sm={6}>
