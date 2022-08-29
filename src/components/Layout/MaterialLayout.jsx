@@ -6,15 +6,12 @@ import theme from "./styles";
 import Header from "../Header";
 import Footer from "../Footer";
 
-// import { theme, useStyle } from './styles';
-
 export default function MaterialLayout(props) {
   const { children } = props;
-  // const classes = useStyle();
 
   return (
     <ThemeProvider theme={theme}>
-      <Container minWidth="sm">
+      <Container minwidth="sm">
         <CssBaseline />
         <Header />
         <Box>
