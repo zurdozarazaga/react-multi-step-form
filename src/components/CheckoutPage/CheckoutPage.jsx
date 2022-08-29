@@ -282,6 +282,7 @@ export default function CheckoutPage() {
                       sx={{
                         maxWidth: 400,
                         flexGrow: 2,
+                        pt: 4,
                       }}
                       nextButton={
                         <Box
