@@ -1,21 +1,9 @@
 import checkoutFormModel from "./checkoutFormModel";
 const {
-  formField: {
-    firstName,
-    lastName,
-    email,
-    phone,
-    area,
-    profession,
-    job,
-    nameOnCard,
-    cardNumber,
-    expiryDate,
-    cvv,
-  },
+  formField: { firstName, lastName, email, phone, area, profession, job },
 } = checkoutFormModel;
 
-export default {
+const Fields = {
   [firstName.name]: "",
   [lastName.name]: "",
   [email.name]: "",
@@ -24,3 +12,5 @@ export default {
   [phone.name]: "",
   [job.name]: "",
 };
+
+export default Fields;

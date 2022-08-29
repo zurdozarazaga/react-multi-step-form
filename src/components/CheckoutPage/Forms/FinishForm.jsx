@@ -22,24 +22,7 @@ const FinishForm = ({ checkboxData }) => {
           }}
         >
           <Typography variant="h5" gutterBottom>
-            Ya diste tu primer gran paso!
-          </Typography>
-        </Box>
-        <Typography variant="h6" gutterBottom>
-          Las respuestas a tu diagnóstico llegarán a tu casilla de correo en
-          breve. Cuanto más entiendes tú organización, más preparado estás para
-          desafiar el proceso de superación.
-        </Typography>
-        <Box
-          spacing={2}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography variant="h6" gutterBottom>
-            Sigamos en contacto.
+            Ya falta poco!
           </Typography>
         </Box>
         <Box
@@ -51,31 +34,7 @@ const FinishForm = ({ checkboxData }) => {
           }}
         >
           <Typography variant="h6" gutterBottom>
-            Equipo aqnitio
-          </Typography>
-        </Box>
-        <Box
-          spacing={2}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography variant="h6" fontWeight="bold" color="blue" gutterBottom>
-            info@aqnitio.com.ar
-          </Typography>
-        </Box>
-        <Box
-          spacing={2}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography variant="h6" fontWeight="bold" color="blue" gutterBottom>
-            www.aqnitio.com.ar
+            Presiona en Enviar para finalizar
           </Typography>
         </Box>
       </Box>

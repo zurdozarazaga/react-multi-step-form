@@ -108,7 +108,7 @@ export default function CheckoutPage() {
   const [isFinishStepState, setisFinishStepState] = useState(isFinishStep);
 
   const matches = useMediaQuery("(max-width:954px)");
-  const matchFooter = useMediaQuery("(max-width:340px)");
+  const matchFooter = useMediaQuery("(max-width:450px)");
   const theme = useTheme();
 
   function _submitForm(values, actions, valuesResponse) {

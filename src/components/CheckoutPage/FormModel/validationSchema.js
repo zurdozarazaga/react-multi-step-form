@@ -1,12 +1,11 @@
 import * as Yup from "yup";
-import moment from "moment";
 import checkoutFormModel from "./checkoutFormModel";
 const {
   formField: { firstName, lastName, email, job, profession, area },
 } = checkoutFormModel;
 
 const mailFormat =
-  /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/;
+  /^(([^<>()[\]\\.,;:\s@”]+(\.[^<>()[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/;
 
 const validationSchema = [
   Yup.object().shape({
