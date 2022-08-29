@@ -1,6 +1,7 @@
 import { Avatar, Link, Stack, Typography } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
+
 //footer
 const Footer = () => {
   return (
@@ -15,26 +16,64 @@ const Footer = () => {
             backgroundSize: "cover",
           }}
         >
-          <Avatar
-            variant="square"
-            src="https://www.aqnitio.com.ar/wp-content/uploads/2020/04/logo_aqnitio_sticky.png"
-            sx={{ width: "auto", height: 48, backgroundSize: "cover" }}
+          <Link
+            href="https://www.aqnitio.com.ar/"
+            rel="noreferrer"
+            target="blank"
           >
-            <img
+            <Avatar
+              variant="square"
               src="https://www.aqnitio.com.ar/wp-content/uploads/2020/04/logo_aqnitio_sticky.png"
-              alt="logo"
-            />
-          </Avatar>
+              sx={{ width: "auto", height: 48, backgroundSize: "cover" }}
+            >
+              <img
+                src="https://www.aqnitio.com.ar/wp-content/uploads/2020/04/logo_aqnitio_sticky.png"
+                alt="logo"
+              />
+            </Avatar>
+          </Link>
         </Stack>
         <Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>
-          <Typography variant="caption">Home</Typography>
-          <Typography variant="caption">Contact</Typography>
-          <Typography variant="caption">About</Typography>
+          <Link href="https://aqnitio.com.ar/" rel="noreferrer" target="blank">
+            <Typography variant="caption">Inicio</Typography>
+          </Link>
+          <Link
+            href="https://www.aqnitio.com.ar/nosotros/"
+            rel="noreferrer"
+            target="blank"
+          >
+            <Typography variant="caption">Nosotros</Typography>
+          </Link>
+          <Link
+            href="https://www.aqnitio.com.ar/servicios/"
+            rel="noreferrer"
+            target="blank"
+          >
+            <Typography variant="caption">Servicios</Typography>
+          </Link>
         </Stack>
         <Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>
-          <Typography variant="caption">Home</Typography>
-          <Typography variant="caption">Contact</Typography>
-          <Typography variant="caption">About</Typography>
+          <Link
+            href="https://www.aqnitio.com.ar/eventos/"
+            rel="noreferrer"
+            target="blank"
+          >
+            <Typography variant="caption">Eventos</Typography>
+          </Link>
+          <Link
+            href="https://www.aqnitio.com.ar/blog-aqnitio/"
+            rel="noreferrer"
+            target="blank"
+          >
+            <Typography variant="caption">Blog</Typography>
+          </Link>
+          <Link
+            href="https://www.aqnitio.com.ar/contacto/"
+            rel="noreferrer"
+            target="blank"
+          >
+            <Typography variant="caption">Contacto</Typography>
+          </Link>
         </Stack>
         <Stack direction="row" sx={{ justifyContent: "center" }}>
           <Typography variant="body2" color="textSecondary" align="center">

@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Avatar } from "@mui/material";
+import { Avatar, Link } from "@mui/material";
 import Image from "../../assets/images/backgroundImage.png";
 
 const Header = () => {
@@ -29,16 +29,17 @@ const Header = () => {
           {/* botton to home */}
           <IconButton onClick={handleHome} sx={{ p: 0 }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <Avatar
-                variant="square"
-                src="https://www.aqnitio.com.ar/wp-content/uploads/2020/04/logo_aqnitio_sticky.png"
-                sx={{ width: "auto", height: 48, backgroundSize: "cover" }}
+              <Link
+                href="https://www.aqnitio.com.ar/"
+                rel="noreferrer"
+                target="blank"
               >
-                <img
+                <Avatar
+                  variant="square"
                   src="https://www.aqnitio.com.ar/wp-content/uploads/2020/04/logo_aqnitio_sticky.png"
-                  alt="logo"
-                />
-              </Avatar>
+                  sx={{ width: "auto", height: 48, backgroundSize: "cover" }}
+                ></Avatar>
+              </Link>
             </Box>
           </IconButton>
         </Toolbar>
