@@ -34,6 +34,7 @@ import useResponse from "../../hooks/useResponse";
 import useValidation from "../../hooks/useValidation";
 import EmailSent from "./Forms/EmailSent";
 import NotFound from "./Forms/NotFound";
+import LayoutHelmet from "../LayoutHelmet";
 
 const steps = [
   "Datos Personales",
@@ -175,6 +176,10 @@ export default function CheckoutPage() {
 
   return (
     <>
+      <LayoutHelmet
+        section={steps[activeStep]}
+        description="Formulario para el diagnóstico de tu empresa por parte de Aqnitio"
+      />
       <Typography
         sx={{
           fontWeight: "bold",
