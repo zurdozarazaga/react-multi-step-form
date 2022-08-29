@@ -120,6 +120,7 @@ export default function CheckoutPage() {
     const response = compareArrays(values);
     const responseConcatWhitValues = Object.assign(values, response);
     console.log(responseConcatWhitValues);
+    actions.setSubmitting(true);
 
     emailjs
       .send(
@@ -133,6 +134,7 @@ export default function CheckoutPage() {
           console.log(result.text);
           if (result.text === "OK") {
             setisFinishStepState(true);
+            actions.setSubmitting(false);
             setActiveStep(activeStep + 1);
           }
         },
@@ -140,10 +142,11 @@ export default function CheckoutPage() {
           console.log(error.text);
           setisFinishStepState(true);
           setActiveStep(activeStep + 100);
+          actions.setSubmitting(false);
         }
       );
     //sets isSubmitting to false
-    actions.setSubmitting(false);
+    // actions.setSubmitting(false);
     // ver estado cuadno termina el formualario
   }
 
@@ -227,130 +230,140 @@ export default function CheckoutPage() {
       >
         {({ isSubmitting }) => (
           <Form id={formId}>
-            <Box
-              sx={{ height: (matchFooter) => (matchFooter ? "100vh" : "auto") }}
-              // sx={{ height: "auto" }}
-            >
+            {!isSubmitting && (
               <Box
                 sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  height: "auto",
-                  mt: "50px",
-                  mb: "5px",
+                  height: matchFooter ? "auto" : "100vh",
                 }}
               >
-                {_renderStepContent(activeStep, checkError)}
-              </Box>
-
-              {!matches && (
                 <Box
                   sx={{
                     display: "flex",
-                    px: "2rem",
-                    py: "1rem",
-                    mb: "1rem",
-                    mt: "12px",
-                    flexDirection: "row",
-                    justifyContent: "space-around",
+                    justifyContent: "center",
+                    height: "auto",
+                    mt: "50px",
+                    mb: "5px",
                   }}
                 >
-                  {/* {activeStep !== 0 &&
+                  {_renderStepContent(activeStep, checkError)}
+                </Box>
+
+                {!matches && (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      px: "2rem",
+                      py: "1rem",
+                      mb: "1rem",
+                      mt: "12px",
+                      flexDirection: "row",
+                      justifyContent: "space-around",
+                    }}
+                  >
+                    {/* {activeStep !== 0 &&
                     {
                       <Button onClick={_handleBack} className="">
                       Back
                     </Button>
                     }} */}
-                  <Box
-                    display={isFinishStepState ? "none" : "flex"}
-                    sx={{
-                      flexDirection: "row",
-                      justifyContent: "flex-end",
-                    }}
-                  >
-                    <Button
+                    <Box
+                      display={isFinishStepState ? "none" : "flex"}
                       sx={{
-                        backgroundColor: "#6e0dae",
-                        "&:hover": {
-                          backgroundColor: "#9a61c8",
-                        },
+                        flexDirection: "row",
+                        justifyContent: "flex-end",
                       }}
-                      // disabled={isSubmitting} //is disabled when the form is submitted
-                      type="submit"
-                      variant="contained"
-                      // color="#9a61c8"
                     >
-                      {/* if islaststep is true => "send" else "Next" */}
-                      {isLastStep ? "Enviar" : "Next"}
-                    </Button>
-                    {isSubmitting && (
-                      <CircularProgress
-                        size={24}
+                      <Button
                         sx={{
-                          position: "absolute",
-                          top: "50%",
-                          left: "50%",
-                          marginTop: "-12px",
-                          marginLeft: "-12px",
+                          backgroundColor: "#6e0dae",
+                          "&:hover": {
+                            backgroundColor: "#9a61c8",
+                          },
                         }}
-                      />
-                    )}
-                  </Box>
-                </Box>
-              )}
-              <Stack
-                spacing={2}
-                alignItems="center"
-                justifyContent="center"
-                direction="row"
-              >
-                {matches && (
-                  <MobileStepper
-                    variant="dots"
-                    steps={isFinishStepState ? 0 : steps.length}
-                    position="static"
-                    activeStep={activeStep}
-                    sx={{
-                      maxWidth: 400,
-                      flexGrow: 2,
-                    }}
-                    nextButton={
-                      <Box
-                        display={isFinishStepState ? "none" : "flex"}
-                        justifyContent="space-between"
+                        // disabled={isSubmitting} //is disabled when the form is submitted
+                        type="submit"
+                        variant="contained"
+                        // color="#9a61c8"
                       >
-                        <Button
-                          size="small"
-                          type="submit"
-                          disabled={activeStep === 8}
-                        >
-                          {isLastStep ? "Enviar" : "Next"}
-                          {theme.direction === "rtl" ? (
-                            <KeyboardArrowLeft />
-                          ) : (
-                            <KeyboardArrowRight />
-                          )}
-                        </Button>
-                      </Box>
-                    }
-                    // backButton={
-                    // <Button
-                    //   size="small"
-                    //   onClick={_handleBack}
-                    //   disabled={activeStep === 0}
-                    // >
-                    //   {theme.direction === "rtl" ? (
-                    //     <KeyboardArrowRight />
-                    //   ) : (
-                    //     <KeyboardArrowLeft />
-                    //   )}
-                    //   Back
-                    // </Button>
-                    // }
-                  />
+                        {/* if islaststep is true => "send" else "Next" */}
+                        {isLastStep ? "Enviar" : "Next"}
+                      </Button>
+                    </Box>
+                  </Box>
                 )}
-              </Stack>
-            </Box>
+                <Stack
+                  spacing={2}
+                  alignItems="center"
+                  justifyContent="center"
+                  direction="row"
+                >
+                  {matches && (
+                    <MobileStepper
+                      variant="dots"
+                      steps={isFinishStepState ? 0 : steps.length}
+                      position="static"
+                      activeStep={activeStep}
+                      sx={{
+                        maxWidth: 400,
+                        flexGrow: 2,
+                      }}
+                      nextButton={
+                        <Box
+                          display={isFinishStepState ? "none" : "flex"}
+                          justifyContent="space-between"
+                        >
+                          <Button
+                            size="small"
+                            type="submit"
+                            disabled={activeStep === 8}
+                          >
+                            {isLastStep ? "Enviar" : "Next"}
+                            {theme.direction === "rtl" ? (
+                              <KeyboardArrowLeft />
+                            ) : (
+                              <KeyboardArrowRight />
+                            )}
+                          </Button>
+                        </Box>
+                      }
+                      // backButton={
+                      // <Button
+                      //   size="small"
+                      //   onClick={_handleBack}
+                      //   disabled={activeStep === 0}
+                      // >
+                      //   {theme.direction === "rtl" ? (
+                      //     <KeyboardArrowRight />
+                      //   ) : (
+                      //     <KeyboardArrowLeft />
+                      //   )}
+                      //   Back
+                      // </Button>
+                      // }
+                    />
+                  )}
+                </Stack>
+              </Box>
+            )}
+            {isSubmitting && (
+              <Box
+                sx={{
+                  height: (matchFooter) => (matchFooter ? "100vh" : "auto"),
+                }}
+              >
+                <CircularProgress
+                  size={48}
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    marginTop: "-12px",
+                    marginLeft: "-12px",
+                    height: "100vh",
+                  }}
+                />
+              </Box>
+            )}
           </Form>
         )}
       </Formik>
