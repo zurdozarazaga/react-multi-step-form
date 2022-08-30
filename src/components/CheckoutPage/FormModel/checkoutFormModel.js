@@ -3,17 +3,17 @@ const checkoutFormModel = {
   formField: {
     firstName: {
       name: "firstName",
-      label: "First name*",
+      label: "Nombre*",
       requiredErrorMsg: "First name is required",
     },
     lastName: {
       name: "lastName",
-      label: "Last name*",
+      label: "Apellido*",
       requiredErrorMsg: "Last name is required",
     },
     email: {
       name: "email",
-      label: "email*",
+      label: "Email*",
       requiredErrorMsg: "Email is required",
     },
     profession: {

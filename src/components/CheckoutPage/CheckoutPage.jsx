@@ -98,7 +98,7 @@ export default function CheckoutPage() {
   const { addKeyAndValuesInArray, compareArrays } = useResponse(AppContext);
   const { validationCheckbox } = useValidation(AppContext);
 
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(8);
   const [checkError, setCheckError] = useState(false);
   const [checkButtonBack, setcheckButtonBack] = useState(false);
 

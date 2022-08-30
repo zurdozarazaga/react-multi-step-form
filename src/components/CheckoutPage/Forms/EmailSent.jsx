@@ -22,7 +22,7 @@ const EmailSent = ({ checkboxData }) => {
           }}
         >
           <Typography variant="h5" gutterBottom>
-            Mensaje enviado con éxito!
+            ¡Mensaje enviado con éxito!
           </Typography>
         </Box>
         <Box
@@ -46,7 +46,7 @@ const EmailSent = ({ checkboxData }) => {
             justifyContent: "center",
           }}
         >
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" pt={6} gutterBottom>
             Sigamos en contacto.
           </Typography>
         </Box>
