@@ -35,6 +35,11 @@ import useValidation from "../../hooks/useValidation";
 import EmailSent from "./Forms/EmailSent";
 import NotFound from "./Forms/NotFound";
 import LayoutHelmet from "../LayoutHelmet";
+import useGraph from "../../hooks/useGraph";
+import {
+  responseConcatWhitValuesHardCode,
+  addKeyAndValuesInArrayHardCode,
+} from "../../hardCodeValues";
 
 const steps = [
   "Datos Personales",
@@ -48,7 +53,7 @@ const steps = [
 ];
 const { formId, formField } = checkoutFormModel;
 const { checkboxField } = checkboxData;
-function _renderStepContent(step, errorTrue = false) {
+function _renderStepContent(step, errorTrue = false, valuesRadar = []) {
   switch (step) {
     case 0:
       return <AddressForm formField={formField} />;
@@ -88,7 +93,7 @@ function _renderStepContent(step, errorTrue = false) {
     case 7:
       return <FinishForm />;
     case 8:
-      return <EmailSent />;
+      return <EmailSent valuesRadar={valuesRadar} />;
     default:
       return <NotFound />;
   }
@@ -97,10 +102,12 @@ function _renderStepContent(step, errorTrue = false) {
 export default function CheckoutPage() {
   const { addKeyAndValuesInArray, compareArrays } = useResponse(AppContext);
   const { validationCheckbox } = useValidation(AppContext);
+  const { compareCheckboxTrueWithModel } = useGraph(AppContext);
 
-  const [activeStep, setActiveStep] = useState(8);
+  const [activeStep, setActiveStep] = useState(0);
   const [checkError, setCheckError] = useState(false);
   const [checkButtonBack, setcheckButtonBack] = useState(false);
+  const [valuesRadar, setvaluesRadar] = useState([]);
 
   const currentValidationSchema = validationSchema[activeStep];
   const isLastStep = activeStep === steps.length - 1;
@@ -112,9 +119,18 @@ export default function CheckoutPage() {
   const theme = useTheme();
 
   function _submitForm(values, actions, valuesResponse) {
+    const arrKeyTrue = addKeyAndValuesInArray(values);
     const response = compareArrays(values);
+    console.log(response);
+
     const responseConcatWhitValues = Object.assign(values, response);
     actions.setSubmitting(true);
+    console.log(responseConcatWhitValues);
+    const arrResultsValue = compareCheckboxTrueWithModel(arrKeyTrue);
+    // setisFinishStepState(true);
+    // actions.setSubmitting(false);
+    setvaluesRadar(arrResultsValue);
+    // setActiveStep(activeStep + 1);
 
     emailjs
       .send(
@@ -230,7 +246,7 @@ export default function CheckoutPage() {
                     mb: "5px",
                   }}
                 >
-                  {_renderStepContent(activeStep, checkError)}
+                  {_renderStepContent(activeStep, checkError, valuesRadar)}
                 </Box>
 
                 {!matches && (

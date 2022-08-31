@@ -1,8 +1,9 @@
 import { Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import RadarChart from "../../RadarChart";
 
-const EmailSent = ({ checkboxData }) => {
+const EmailSent = ({ valuesRadar }) => {
   return (
     <Paper
       sx={{
@@ -24,6 +25,9 @@ const EmailSent = ({ checkboxData }) => {
           <Typography variant="h5" gutterBottom>
             ¡Mensaje enviado con éxito!
           </Typography>
+        </Box>
+        <Box>
+          <RadarChart valuesRadar={valuesRadar} />
         </Box>
         <Box
           sx={{
