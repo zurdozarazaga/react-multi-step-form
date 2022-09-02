@@ -22,7 +22,7 @@ const FinishForm = ({ checkboxData }) => {
           }}
         >
           <Typography variant="h5" gutterBottom>
-            Ya falta poco!
+            ¡Ya falta poco!
           </Typography>
         </Box>
         <Box

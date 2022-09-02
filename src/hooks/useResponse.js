@@ -17,7 +17,8 @@ const useResponse = () => {
 
   //comparacion de dos arrays
   const compareArrays = (obj) => {
-    const arr = addKeyAndValuesInArray(obj);
+    const arr = addKeyAndValuesInArray(obj); // array of keys that are true in checkboxField
+    console.log(arr);
     const ArrayResonse = {}; // array de respuestas
     for (let i = 0; i < arr.length; i++) {
       const KeyTrue = arr[i]; // key true

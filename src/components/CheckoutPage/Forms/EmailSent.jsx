@@ -1,93 +1,134 @@
-import { Paper, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import { Box } from "@mui/system";
 import React from "react";
+import RadarChart from "../../RadarChart";
 
-const EmailSent = ({ checkboxData }) => {
+const EmailSent = ({ valuesRadar }) => {
   return (
-    <Paper
-      sx={{
-        width: { md: "45%", sm: "70%", xs: "100%" },
-        justifyContent: "center",
-        height: "auto",
-        padding: "12px",
-      }}
-    >
-      <Box spacing={2} sx={{ display: "block" }}>
-        <Box
+    <>
+      <Grid
+        container
+        width={{ sm: "100%", md: "70%" }}
+        sx={{ alignItems: "center", justifyContent: "center" }}
+      >
+        <Grid xs={12}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant="h4" gutterBottom>
+              ¡Mensaje enviado con éxito!
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid xs={12}>
+          <Box
+            spacing={2}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant="h6" alignItems="center">
+              Las respuestas a tu diagnóstico llegarán a tu casilla de correo en
+              breve.
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid
+          container
           spacing={2}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+          xs={12}
+          sx={{ alignItems: "center", justifyContent: "center", pt: 4 }}
         >
-          <Typography variant="h5" gutterBottom>
-            Mensaje enviado con éxito!
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography variant="h6" gutterBottom>
-            Las respuestas a tu diagnóstico llegarán a tu casilla de correo en
-            breve. Cuanto más entiendes tú organización, más preparado estás
-            para desafiar el proceso de superación.
-          </Typography>
-        </Box>
-        <Box
-          spacing={2}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography variant="h6" gutterBottom>
-            Sigamos en contacto.
-          </Typography>
-        </Box>
-        <Box
-          spacing={2}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography variant="h6" gutterBottom>
-            Equipo aqnitio
-          </Typography>
-        </Box>
-        <Box
-          spacing={2}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography variant="h6" fontWeight="bold" color="blue" gutterBottom>
-            info@aqnitio.com.ar
-          </Typography>
-        </Box>
-        <Box
-          spacing={2}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography variant="h6" fontWeight="bold" color="blue" gutterBottom>
-            www.aqnitio.com.ar
-          </Typography>
-        </Box>
-      </Box>
-    </Paper>
+          <Grid xs={12} justifyContent="center">
+            <RadarChart valuesRadar={valuesRadar} />
+          </Grid>
+          <Grid xs={12}>
+            <Typography variant="subtitle1" alignItems="center">
+              La grafica permite visualizar rápidamente las áreas con mayor
+              desarrollo y las que requieren acción. Lo deseable es lograr un
+              avance equilibrado en los 6 aspectos. Las áreas menos
+              desarrolladas son las que debe priorizar y para balancer con las
+              más desarrolladas.
+            </Typography>
+          </Grid>
+          <Grid xs={12}>
+            <Typography pt={8} variant="h5" alignItems="center">
+              Cuanto más entiendes tú organización, más preparado estás para
+              desafiar el proceso de superación.
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid xs={12}>
+          <Box
+            spacing={2}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant="h5" pt={6} gutterBottom>
+              Sigamos en contacto.
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid xs={12}>
+          <Box
+            spacing={2}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant="h5" gutterBottom>
+              Equipo aqnitio
+            </Typography>
+          </Box>
+          <Box
+            spacing={2}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              color="blue"
+              gutterBottom
+            >
+              info@aqnitio.com.ar
+            </Typography>
+          </Box>
+          <Box
+            spacing={2}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              color="blue"
+              gutterBottom
+            >
+              www.aqnitio.com.ar
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
