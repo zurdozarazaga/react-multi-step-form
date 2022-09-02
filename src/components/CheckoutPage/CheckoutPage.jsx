@@ -234,7 +234,8 @@ export default function CheckoutPage() {
             {!isSubmitting && (
               <Box
                 sx={{
-                  height: matchFooter ? "auto" : "100vh",
+                  height: matchFooter || activeStep === 8 ? "auto" : "100vh",
+                  p: "10px",
                 }}
               >
                 <Box
