@@ -121,11 +121,9 @@ export default function CheckoutPage() {
   function _submitForm(values, actions, valuesResponse) {
     const arrKeyTrue = addKeyAndValuesInArray(values);
     const response = compareArrays(values);
-    console.log(response);
 
     const responseConcatWhitValues = Object.assign(values, response);
     actions.setSubmitting(true);
-    console.log(responseConcatWhitValues);
     const arrResultsValue = compareCheckboxTrueWithModel(arrKeyTrue);
     // setisFinishStepState(true);
     // actions.setSubmitting(false);
@@ -149,7 +147,6 @@ export default function CheckoutPage() {
           }
         },
         (error) => {
-          console.log(error.text);
           setisFinishStepState(true);
           setActiveStep(activeStep + 100);
           actions.setSubmitting(false);
@@ -231,100 +228,99 @@ export default function CheckoutPage() {
       >
         {({ isSubmitting }) => (
           <Form id={formId}>
-            {!isSubmitting && (
+            <Box
+              display={isSubmitting ? "none" : "block"}
+              sx={{
+                height: matchFooter || activeStep === 8 ? "auto" : "100vh",
+                p: "10px",
+              }}
+            >
               <Box
                 sx={{
-                  height: matchFooter || activeStep === 8 ? "auto" : "100vh",
-                  p: "10px",
+                  display: "flex",
+                  justifyContent: "center",
+                  height: "auto",
+                  mt: "50px",
+                  mb: "5px",
                 }}
               >
+                {_renderStepContent(activeStep, checkError, valuesRadar)}
+              </Box>
+
+              {!matches && (
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "center",
-                    height: "auto",
-                    mt: "50px",
-                    mb: "5px",
+                    px: "2rem",
+                    py: "1rem",
+                    mb: "1rem",
+                    mt: "12px",
+                    flexDirection: "row",
+                    justifyContent: "space-around",
                   }}
                 >
-                  {_renderStepContent(activeStep, checkError, valuesRadar)}
-                </Box>
-
-                {!matches && (
                   <Box
+                    display={isFinishStepState ? "none" : "flex"}
                     sx={{
-                      display: "flex",
-                      px: "2rem",
-                      py: "1rem",
-                      mb: "1rem",
-                      mt: "12px",
                       flexDirection: "row",
-                      justifyContent: "space-around",
+                      justifyContent: "flex-end",
                     }}
                   >
-                    <Box
-                      display={isFinishStepState ? "none" : "flex"}
+                    <Button
                       sx={{
-                        flexDirection: "row",
-                        justifyContent: "flex-end",
+                        backgroundColor: "#6e0dae",
+                        "&:hover": {
+                          backgroundColor: "#9a61c8",
+                        },
                       }}
+                      type="submit"
+                      variant="contained"
                     >
-                      <Button
-                        sx={{
-                          backgroundColor: "#6e0dae",
-                          "&:hover": {
-                            backgroundColor: "#9a61c8",
-                          },
-                        }}
-                        type="submit"
-                        variant="contained"
-                      >
-                        {isLastStep ? "Enviar" : "Next"}
-                      </Button>
-                    </Box>
+                      {isLastStep ? "Enviar" : "Next"}
+                    </Button>
                   </Box>
-                )}
-                <Stack
-                  spacing={2}
-                  alignItems="center"
-                  justifyContent="center"
-                  direction="row"
-                >
-                  {matches && (
-                    <MobileStepper
-                      variant="dots"
-                      steps={isFinishStepState ? 0 : steps.length}
-                      position="static"
-                      activeStep={activeStep}
-                      sx={{
-                        maxWidth: 400,
-                        flexGrow: 2,
-                        pt: 4,
-                      }}
-                      nextButton={
-                        <Box
-                          display={isFinishStepState ? "none" : "flex"}
-                          justifyContent="space-between"
+                </Box>
+              )}
+              <Stack
+                spacing={2}
+                alignItems="center"
+                justifyContent="center"
+                direction="row"
+              >
+                {matches && (
+                  <MobileStepper
+                    variant="dots"
+                    steps={isFinishStepState ? 0 : steps.length}
+                    position="static"
+                    activeStep={activeStep}
+                    sx={{
+                      maxWidth: 400,
+                      flexGrow: 2,
+                      pt: 4,
+                    }}
+                    nextButton={
+                      <Box
+                        display={isFinishStepState ? "none" : "flex"}
+                        justifyContent="space-between"
+                      >
+                        <Button
+                          size="small"
+                          type="submit"
+                          disabled={activeStep === 8}
                         >
-                          <Button
-                            size="small"
-                            type="submit"
-                            disabled={activeStep === 8}
-                          >
-                            {isLastStep ? "Enviar" : "Next"}
-                            {theme.direction === "rtl" ? (
-                              <KeyboardArrowLeft />
-                            ) : (
-                              <KeyboardArrowRight />
-                            )}
-                          </Button>
-                        </Box>
-                      }
-                    />
-                  )}
-                </Stack>
-              </Box>
-            )}
+                          {isLastStep ? "Enviar" : "Next"}
+                          {theme.direction === "rtl" ? (
+                            <KeyboardArrowLeft />
+                          ) : (
+                            <KeyboardArrowRight />
+                          )}
+                        </Button>
+                      </Box>
+                    }
+                  />
+                )}
+              </Stack>
+            </Box>
             {isSubmitting && (
               <Box
                 sx={{

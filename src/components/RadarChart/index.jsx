@@ -19,7 +19,6 @@ ChartJS.register(
 );
 
 export const RadarChart = ({ valuesRadar }) => {
-  console.log(valuesRadar);
   const options = {
     responsive: true,
     scales: {
