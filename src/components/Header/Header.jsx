@@ -7,10 +7,6 @@ import { Avatar, Link } from "@mui/material";
 import Image from "../../assets/images/backgroundImage.png";
 
 const Header = () => {
-  const handleHome = () => {
-    console.log("Home");
-  };
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -24,7 +20,7 @@ const Header = () => {
       >
         <Toolbar>
           {/* botton to home */}
-          <IconButton onClick={handleHome} sx={{ p: 0 }}>
+          <IconButton sx={{ p: 0 }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Link
                 href="https://www.aqnitio.com.ar/"
