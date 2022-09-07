@@ -34,7 +34,7 @@ const FinishForm = ({ checkboxData }) => {
           }}
         >
           <Typography variant="h6" gutterBottom>
-            Presiona en Enviar para finalizar
+            Presioná en ENVIAR para finalizar
           </Typography>
         </Box>
       </Box>
