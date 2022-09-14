@@ -202,7 +202,7 @@ export default function CheckoutPage() {
         variant="h4"
         align="center"
       >
-        Diagnóstico
+        Diagnosticá a tu empresa en 7 pasos
       </Typography>
       <Stack
         spacing={2}
