@@ -26,6 +26,7 @@
     "react-scripts": "^5.0.1",
     "yup": "^0.32.11"
   },
+  "homepage": "https://aqnitio.com.ar/diagnostico/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

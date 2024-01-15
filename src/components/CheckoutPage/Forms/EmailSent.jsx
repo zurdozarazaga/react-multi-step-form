@@ -51,11 +51,11 @@ const EmailSent = ({ valuesRadar }) => {
           </Grid>
           <Grid xs={12}>
             <Typography variant="subtitle1" alignItems="center">
-              La grafica permite visualizar rápidamente las áreas con mayor
+              El gráfico permite visualizar rápidamente las áreas con mayor
               desarrollo y las que requieren acción. Lo deseable es lograr un
               avance equilibrado en los 6 aspectos. Las áreas menos
-              desarrolladas son las que debe priorizar y para balancer con las
-              más desarrolladas.
+              desarrolladas son las que debe priorizar y, al mismo tiempo,
+              balancer con las más desarrolladas.
             </Typography>
           </Grid>
           <Grid xs={12}>
